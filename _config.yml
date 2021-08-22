@@ -1,3 +1,17 @@
+deploy:
+  type: git
+  #repo改为repo:git@你的域名:/var/repo/hexo.git
+  repo: git@116.62.105.168:/blogGit/repo/hexo.git
+  branch: master
+
 theme: fluid  # 指定主题
 
 language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改
+
+admin:
+  username: Saraph1nes
+  password_hash: $2a$10$KQZR7xsTfuJj6yC7k6kpIef.bTBFs029iWdKUj5R5jcbL26H4sk1O
+  secret: i hate cookie
+
+all_minifier: true
+
