@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/infos/favicon.ico">
+  <link rel="icon" href="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/infos/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>Jsonp爬虫 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#2299dd","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Saraph1nes Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Jsonp爬虫">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-20 15:05" pubdate>
+        2021年8月20日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      阅读本文大致需要 
+      20
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        已被浏览 <span id="busuanzi_value_page_pv"></span> 次啦~
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jsonp爬虫</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：6 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Jsoup和HtmlUnit简单实战"><a href="#Jsoup和HtmlUnit简单实战" class="headerlink" title="Jsoup和HtmlUnit简单实战"></a>Jsoup和HtmlUnit简单实战</h1><blockquote>
+<p>本技术需要一定的前端基础和JAVA网络编程相关知识，如还不了解自行百度补充</p>
+</blockquote>
+<h2 id="一、Jsoup简介"><a href="#一、Jsoup简介" class="headerlink" title="一、Jsoup简介"></a>一、Jsoup简介</h2><p>jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</p>
+<p>网页获取和解析速度飞快，推荐使用。<br>主要功能如下：</p>
+<ol>
+<li>从一个URL，文件或字符串中解析HTML；</li>
+<li>使用DOM或CSS选择器来查找、取出数据；</li>
+<li>可操作HTML元素、属性、文本；</li>
+</ol>
+<p><strong>注意：Jsoup只能解析网页，不能爬电影和音乐</strong></p>
+<h2 id="二、Jsoup入门实战讲解"><a href="#二、Jsoup入门实战讲解" class="headerlink" title="二、Jsoup入门实战讲解"></a>二、Jsoup入门实战讲解</h2><p>首先创建一个java的maven项目作为本次讲解的例子</p>
+<p>导入maven依赖如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;!-- https:<span class="hljs-comment">//mvnrepository.com/artifact/org.jsoup/jsoup --&gt;</span><br>      &lt;dependency&gt;<br>          &lt;groupId&gt;org.jsoup&lt;/groupId&gt;<br>          &lt;artifactId&gt;jsoup&lt;/artifactId&gt;<br>          &lt;version&gt;<span class="hljs-number">1.13</span><span class="hljs-number">.1</span>&lt;/version&gt;<br>      &lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>首先我们要爬取京东的英语六级资料信息，我们在搜索框中输入”cet6”，地址栏如图所示</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200615225858019.png" srcset="/img/loading.gif" lazyload alt="image-20200615225858019"></p>
+<p>现在我们得到了我们要获取的请求地址</p>
+<p><a target="_blank" rel="noopener" href="https://search.jd.com/Search?keyword=cet6">https://search.jd.com/Search?keyword=cet6</a></p>
+<p>可以看出，返回的是浏览器的Document对象，在js中可以使用的代码这里都能用</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200615230420474.png" srcset="/img/loading.gif" lazyload alt="image-20200615230420474"></p>
+<p>接下来通过审查元素找到商品列表的div，并拿到div下的li标签</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200615230734537.png" srcset="/img/loading.gif" lazyload alt="image-20200615230734537"></p>
+<p>接下来我们按照此方法，拿到相应的标签，并运行，运行结果如下，代码在下方给出</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200615232057442.png" srcset="/img/loading.gif" lazyload alt="image-20200615232057442"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HtmlParseUtils</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">//请求地址  https://search.jd.com/Search?keyword=cet6</span><br>        String url = <span class="hljs-string">&quot;https://search.jd.com/Search?keyword=cet6&quot;</span>;<br>        <span class="hljs-comment">//解析网页 (返回的是浏览器的Document对象,在js中可以使用的代码这里都能用)</span><br>        Document document = Jsoup.parse(<span class="hljs-keyword">new</span> URL(url), <span class="hljs-number">10000</span>);<br>        Element element = document.getElementById(<span class="hljs-string">&quot;J_goodsList&quot;</span>);<br>        <span class="hljs-comment">//获取所有li冤死</span><br>        Elements elements = element.getElementsByTag(<span class="hljs-string">&quot;li&quot;</span>);<br>        <span class="hljs-keyword">for</span> (Element el : elements) &#123;<br>            <span class="hljs-comment">//拿到商品的图片（注意：如果图片未能找到，可能是因为网站使用了懒加载的方式）</span><br>            String img = el.getElementsByTag(<span class="hljs-string">&quot;img&quot;</span>).eq(<span class="hljs-number">0</span>).attr(<span class="hljs-string">&quot;src&quot;</span>);<br>            <br>            <span class="hljs-comment">//String img = el.getElementsByTag(&quot;img&quot;).eq(0).attr(&quot;source-data-lazy-img&quot;);如果上面的方法未能拿到，使用这个</span><br>            <br>            String price = el.getElementsByClass(<span class="hljs-string">&quot;p-price&quot;</span>).eq(<span class="hljs-number">0</span>).text();<span class="hljs-comment">//拿到商品的价格</span><br>            <br>            String name = el.getElementsByClass(<span class="hljs-string">&quot;p-name&quot;</span>).eq(<span class="hljs-number">0</span>).text();<span class="hljs-comment">//商品名字</span><br><br>            System.out.println(<span class="hljs-string">&quot;===================================================&quot;</span>);<br>            System.out.println(img);<br>            System.out.println(price);<br>            System.out.println(name);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>讲解到这里相信大家已经对Jsoup有了基本的了解，需要工具类的话把他封装一下即可，下面来说说怎么爬取Ajax</p>
+<h2 id="三、HtmlUnit简介"><a href="#三、HtmlUnit简介" class="headerlink" title="三、HtmlUnit简介"></a>三、HtmlUnit简介</h2><blockquote>
+<p>比较推荐使用HtmlUnit来进行网页抓取主要是因为：</p>
+<ul>
+<li>对于使用java实现的网页爬虫程序，我们一般可以使用apache的HttpClient组件进行HTML页面信息的获取，HttpClient实现的http请求返回的响应一般是纯文本的document页面，即最原始的html页面。</li>
+<li>对于一个静态的html页面来说，使用httpClient足够将我们所需要的信息爬取出来了。但是对于现在越来越多的动态网页来说，更多的数据是通过异步JS代码获取并渲染到的，最开始的html页面是不包含这部分数据的。</li>
+</ul>
+</blockquote>
+<p>htmlunit 是一款开源的java 页面分析工具，读取页面后，可以有效的使用htmlunit分析页面上的内容。项目可以模拟浏览器运行，被誉为java浏览器的开源实现。这个没有界面的浏览器，运行速度也是非常迅速的。采用的是Rhinojs引擎。模拟js运行。</p>
+<p>说白了就是一个浏览器，这个浏览器是用Java写的无界面的浏览器，正因为其没有界面,因此执行的速度还是可以滴，HtmlUnit提供了一系列的API,这些API可以干的功能比较多，如表单的填充，表单的提交，模仿点击链接，由于内置了Rhinojs引擎，因此可以执行Javascript。<br>网页获取和解析速度较快，性能较好，推荐用于需要解析网页脚本的应用场景。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;!-- https:<span class="hljs-comment">//mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit --&gt;</span><br>&lt;dependency&gt;<br>    &lt;groupId&gt;net.sourceforge.htmlunit&lt;/groupId&gt;<br>    &lt;artifactId&gt;htmlunit&lt;/artifactId&gt;<br>    &lt;version&gt;<span class="hljs-number">2.41</span><span class="hljs-number">.0</span>&lt;/version&gt;<br>&lt;/dependency&gt;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="四、HtmlUnit-Jsoup请求Ajax内容"><a href="#四、HtmlUnit-Jsoup请求Ajax内容" class="headerlink" title="四、HtmlUnit+Jsoup请求Ajax内容"></a>四、HtmlUnit+Jsoup请求Ajax内容</h2><p>现在实战一下，我们请求的网站就是本博客，请求地址为</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.yxlyz.net<span class="hljs-regexp">/index.php/</span>search/设计模式<br></code></pre></td></tr></table></figure>
+
+<p>页面如下</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200618104442033.png" srcset="/img/loading.gif" lazyload alt="image-20200618104442033"></p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> net.yxlyz.utils;<br><br><span class="hljs-keyword">import</span> com.gargoylesoftware.htmlunit.*;<br><span class="hljs-keyword">import</span> com.gargoylesoftware.htmlunit.html.*;<br><span class="hljs-keyword">import</span> org.jsoup.Jsoup;<br><span class="hljs-keyword">import</span> org.jsoup.nodes.Document;<br><span class="hljs-keyword">import</span> org.jsoup.nodes.Element;<br><span class="hljs-keyword">import</span> org.jsoup.select.Elements;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.logging.Logger;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Author</span> Saraph1nes</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Date</span> 2020/6/15 23:36</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Version</span> 1.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HtmlUnitDemo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-keyword">final</span> WebClient webClient = <span class="hljs-keyword">new</span> WebClient(BrowserVersion.CHROME);<span class="hljs-comment">//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象</span><br><br>        webClient.getOptions().setThrowExceptionOnScriptError(<span class="hljs-keyword">false</span>);<span class="hljs-comment">//当JS执行出错的时候是否抛出异常, 这里选择不需要</span><br>        webClient.getOptions().setThrowExceptionOnFailingStatusCode(<span class="hljs-keyword">false</span>);<span class="hljs-comment">//当HTTP的状态非200时是否抛出异常, 这里选择不需要</span><br>        webClient.getOptions().setActiveXNative(<span class="hljs-keyword">false</span>);<br>        webClient.getOptions().setCssEnabled(<span class="hljs-keyword">false</span>);<span class="hljs-comment">//是否启用CSS, 因为不需要展现页面, 所以不需要启用</span><br>        webClient.getOptions().setJavaScriptEnabled(<span class="hljs-keyword">true</span>); <span class="hljs-comment">//很重要，启用JS</span><br>        webClient.setAjaxController(<span class="hljs-keyword">new</span> NicelyResynchronizingAjaxController());<span class="hljs-comment">//很重要，设置支持AJAX</span><br><br>        HtmlPage page = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            page = webClient.getPage(<span class="hljs-string">&quot;https://www.yxlyz.net/index.php/search/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&quot;</span>);<span class="hljs-comment">//尝试加载上面图片例子给出的网页</span><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<span class="hljs-keyword">finally</span> &#123;<br>            webClient.close();<br>        &#125;<br><br>        webClient.waitForBackgroundJavaScript(<span class="hljs-number">10000</span>);<span class="hljs-comment">//异步JS执行需要耗时,所以这里线程要阻塞30秒,等待异步JS执行结束</span><br><br>        String pageXml = page.asXml();<span class="hljs-comment">//直接将加载完成的页面转换成xml格式的字符串</span><br><br>        <span class="hljs-comment">//下面的代码就是对字符串的操作了,常规的爬虫操作,用到了比较好用的Jsoup库</span><br><br>        Document document = Jsoup.parse(pageXml);<span class="hljs-comment">//获取html文档</span><br>        List&lt;Element&gt; infoListEle = document.getElementById(<span class="hljs-string">&quot;tab_1&quot;</span>).getElementsByAttributeValue(<span class="hljs-string">&quot;class&quot;</span>, <span class="hljs-string">&quot;list-group-item&quot;</span>);<span class="hljs-comment">//获取元素节点等</span><br>        <span class="hljs-keyword">for</span> (Element element : infoListEle) &#123;<br>            System.out.println(element.getElementsByTag(<span class="hljs-string">&quot;a&quot;</span>).text());<br>            System.out.println(element.getElementsByTag(<span class="hljs-string">&quot;a&quot;</span>).attr(<span class="hljs-string">&quot;href&quot;</span>));<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>结果为：</p>
+<p><img src="https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/AliOssForTypecho/jsonp%E7%88%AC%E8%99%AB/image-20200618103221407.png" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/22/React%E7%B2%BE%E8%BF%9B%E4%B9%8BRefs/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">React精进之Refs</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/20/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">
+                        <span class="hidden-mobile">常见排序算法汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        鄂ICP备20002830号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
