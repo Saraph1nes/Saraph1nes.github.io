@@ -1,7 +1,7 @@
 deploy:
   type: git
   #repo改为repo:git@你的域名:/var/repo/hexo.git
-  repo: git@116.62.105.168:/blogGit/repo/hexo.git
+  repo: https://github.com/Saraph1nes/Saraph1nes.github.io
   branch: master
 
 theme: fluid  # 指定主题
