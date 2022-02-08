@@ -18,9 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>归档 - Hexo</title>
+  <title>使用WSL2给编辑器提速 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,14 +158,59 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/infos/wallhaven-q23w8l.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="使用WSL2给编辑器提速">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-08 18:25" pubdate>
+        2022年2月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      538 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      阅读本文大致需要 
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        已被浏览 <span id="busuanzi_value_page_pv"></span> 次啦~
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -162,88 +223,95 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 12 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/08/26/React%E7%B2%BE%E8%BF%9B%E4%B9%8BRefs%E8%BD%AC%E5%8F%91/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">React精进之Refs转发</span>
-      <time style="float: right;">08-26</time>
-    </a>
-  
-    
-    <a href="/2021/08/22/React%E7%B2%BE%E8%BF%9B%E4%B9%8BRefs/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">React精进之Refs</span>
-      <time style="float: right;">08-22</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/Jsonp%E7%88%AC%E8%99%AB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Jsonp爬虫</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">常见排序算法汇总</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/mysql%E7%BB%83%E4%B9%A0%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">mysql练习题</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/commit%E8%A7%84%E8%8C%83/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">git commit规范</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">手写防抖节流</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/Ngrok%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Ngrok内网穿透</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/20/npm%E5%BF%AB%E9%80%9F%E6%8D%A2%E6%BA%90%E5%B7%A5%E5%85%B7nrm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">npm快速换源工具nrm</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">使用WSL2给编辑器提速</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：几秒前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="⁂-前言"><a href="#⁂-前言" class="headerlink" title="⁂ 前言"></a>⁂ 前言</h2><p>最近使用webstrom的时候下方老是在构建索引，而且挺慢，于是花了点时间捣鼓了一下WSL2。</p>
+<h2 id="⁂-WSL是什么"><a href="#⁂-WSL是什么" class="headerlink" title="⁂ WSL是什么"></a>⁂ WSL是什么</h2><p>Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。</p>
+<p>Linux 的 Windows 子系统允许开发人员直接在 Windows 上运行 GNU/Linux 环境（包括大多数命令行工具、实用程序和应用程序）， 无需修改，没有传统虚拟机或双重引导设置的开销。</p>
+<h2 id="⁂-WSL2"><a href="#⁂-WSL2" class="headerlink" title="⁂ WSL2"></a>⁂ WSL2</h2><p>WSL 2 是 Windows 子系统 for Linux 体系结构的新版本，它为 Windows 子系统 for Linux 提供支持，以便在 Windows 上运行 ELF64 Linux 二进制文件。</p>
+<p>其主要目标是提高文件系统性能，以及添加完整的系统调用兼容性。</p>
+<p>这种新体系结构更改了这些 Linux 二进制文件与 Windows 和计算机硬件交互的方式，但仍提供与 WSL 1（当前广泛使用的版本）中相同的用户体验。</p>
+<p>单个 Linux 发行版可以使用 WSL 1 或 WSL 2 体系结构运行。每个发行版都可以随时升级或降级，您可以并行运行 WSL 1 和 WSL 2 发行版。</p>
+<p>WSL 2 使用全新的架构，该架构受益于运行真正的 Linux 内核。</p>
+<h2 id="⁂-开整"><a href="#⁂-开整" class="headerlink" title="⁂ 开整"></a>⁂ 开整</h2><p>安装WSL并升级： <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install#update-to-wsl-2">https://docs.microsoft.com/zh-cn/windows/wsl/install#update-to-wsl-2</a></p>
+<p>旧版安装WSL看这里： <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package</a></p>
+<p>WSL2支持GPU： <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/ai/directml/gpu-accelerated-training">https://docs.microsoft.com/zh-cn/windows/ai/directml/gpu-accelerated-training</a></p>
+<p>终端推荐Windows Terminal，它可以管理所有的终端，支持常用快捷键，谁用谁知道。在win自带的应用商店就可以安装。</p>
+<p>安装好后，在ubuntu中使用wsl.exe -l -v，或者在powershell中使用wsl -l -v，即可列出已安装的 Linux 发行版并显示每个发行版的 WSL 版本</p>
+<p>Webstrom在2022版本更新之后也是支持wsl的，在linux中配置好ssh，把项目clone再用webstrom打开就行了</p>
+<h2 id="⁂-后记"><a href="#⁂-后记" class="headerlink" title="⁂ 后记"></a>⁂ 后记</h2><p>如果小伙伴们遇到什么问题，欢迎在评论区提问~</p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/08/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5/">
+                        <span class="hidden-mobile">持续集成及部署学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -357,9 +425,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
