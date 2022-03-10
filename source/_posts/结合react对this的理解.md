@@ -1,8 +1,5 @@
 ---
-title: 结合react对this的理解 
-date: 2022-03-07 21:55:02
-tags: js react
-category: 前端
+title: 结合react对this的理解 date: 2022-03-07 21:55:02 tags: js react category: 前端
 ---
 
 ## 使用react的一个小Demo记录一下自己对this的理解
@@ -45,16 +42,16 @@ export default Demo;
 
 那么问题来了，this指向运行时所在的对象或指向定义时所在的对象，但是这个对象最后会是window，不应该是undefined，undefined是怎么来的呢？
 
-一般来说，babel会把我们写的js文件转换成es5来运行，babel会自动给js文件上加上严格模式 "use strict"
+**类声明中的代码自动强行运行在严格模式下**
 
-用了 [严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode) "use strict"，严格模式下无法再意外创建全局变量，所以this不为window而为undefined
+用了 [严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode) "use strict"
+，严格模式下无法再意外创建全局变量，所以this不为window而为undefined
 
 ## call、apply、bind 的用法以及区别
 
 **相同之处：**
 
 改变函数体内 this 的指向。
-
 
 **不同之处：**
 
@@ -95,4 +92,129 @@ sayHi(22, 33);//sayHi 红红 22 33
 sayHi.myCall(person, 44, 55);//sayHi 绿绿 44 55
 ```
 
+上方可以实现带参数的call，也有更简单的方法实现
 
+```js
+Function.prototype.myCall = function (targetObj) {
+  const args = [...arguments].slice(1)// 从第二个参数开始放入数组
+  targetObj.foo = this // 将sayHi函数作为传入对象的foo属性
+  targetObj.foo(...args)// 使用函数，并将参数传入
+}
+
+function sayHi(v1, v2) {
+  console.log('sayHi', this.name, v1, v2)
+  return v1 + v2
+}
+
+name = '红红'
+person = {
+  name: '绿绿'
+}
+
+console.log('say1', sayHi(22, 33));
+;//sayHi 红红 22 33
+console.log('say1', sayHi.myCall(person, 44, 55));//sayHi 绿绿 44 55
+```
+
+方法实现到这里，还需要处理一些细节问题，如果第一个参数为 null 或者 undefined (没传值)呢？ 如果sayHi()有返回值呢 ？ 不难想到，对入参和返回值进行判断就可以了，代码如下
+
+```js
+Function.prototype.myCall = function (targetObj) {
+  const args = [...arguments].slice(1)// 从第二个参数开始放入数组
+  targetObj = targetObj || window // 注意，js代码要放在浏览器运行，window是web浏览器中才有的对象，执行环境node会报window is not defined
+  targetObj.foo = this // 将sayHi函数作为传入对象的foo属性
+  return targetObj.foo(...args)// 使用函数，并将参数传入
+}
+
+function sayHi(v1, v2) {
+  if (v1 && v2) {
+    console.log('sayHi', this.name, v1, v2)
+    return v1 + v2
+  } else {
+    console.log('just say name', this.name)
+  }
+}
+
+name = '红红'
+person = {
+  name: '绿绿'
+}
+
+console.log('say1', sayHi(22, 33));
+console.log('say2', sayHi.myCall({person}, 44, 55));
+sayHi.myCall()
+
+/**
+ * 输出
+ * sayHi 红红 22 33
+ * say1 55
+ * sayHi 绿绿 44 55
+ * say2 99
+ * just say name 红红
+ */
+```
+
+### 实现apply
+
+apply 和 call的作用完全一致，只是入参是一个数组。
+
+```js
+Function.prototype.myApply = function () {
+  let targetObj = arguments[0];
+  const array = arguments[1];
+  targetObj = targetObj || window
+  targetObj.foo = this
+  //判断第二个参数是不是 null or undefiend
+  const result = array == null ? targetObj.foo(array) : targetObj.foo(...array)
+  delete targetObj.foo
+  return result
+}
+
+name = '红红'
+person = {
+  name: '绿绿'
+}
+
+function sayHi(v1, v2) {
+  if (v1 && v2) {
+    console.log('sayHi', this.name, v1, v2)
+    return v1 + v2
+  } else {
+    console.log('just say name', this.name)
+  }
+}
+
+sayHi.myApply(person, [11, 22]) // sayHi 绿绿 11 22
+sayHi.myApply() // just say name 红红
+```
+
+### 实现bind
+
+```js
+Function.prototype.myBind = function (targetObj) {
+  const arr = [...arguments].slice(1)
+  targetObj.foo = this
+  return function () {
+    return targetObj.foo.apply(targetObj, arr)
+  }
+}
+
+name = '红红'
+person = {
+  name: '绿绿'
+}
+
+function sayHi(v1, v2) {
+  console.log('sayHi', this.name, v1, v2)
+}
+
+sayHi(11, 22)// sayHi 红红 11 22
+sayHi.myBind(person, 33, 44)() // sayHi 绿绿 33 44
+```
+
+## 总结
+
+- call、apply、bind都可以改变函数运行时的上下文（this）
+- 如果对传入的参数不确定，推荐使用apply
+- 对于有明确规定的参数，推荐使用call，当然这也是最常用的
+- 对于想先绑定一个新函数，不立马执行的，推荐bind
