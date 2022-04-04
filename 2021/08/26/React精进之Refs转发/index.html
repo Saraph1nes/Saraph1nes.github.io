@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://sm.ms/image/eQ1utyhqRNC5wa4">
-  <link rel="icon" href="https://sm.ms/image/eQ1utyhqRNC5wa4">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/04/04/eQ1utyhqRNC5wa4.jpg">
+  <link rel="icon" href="https://s2.loli.net/2022/04/04/eQ1utyhqRNC5wa4.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#2299dd","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#2299dd","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -112,6 +112,18 @@
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/anniversary/">
+                <i class="iconfont icon-user-fill"></i>
+                纪念日
               </a>
             </li>
           
@@ -220,13 +232,13 @@
             <div class="markdown-body">
               <h1 id="React精进之Refs转发-Forwarding-Refs"><a href="#React精进之Refs转发-Forwarding-Refs" class="headerlink" title="React精进之Refs转发(Forwarding Refs)"></a>React精进之Refs转发(Forwarding Refs)</h1><p>Refs转发是一种通过组件自动将 ref 传递给其子组件的技术。对于应用程序中的大多数组件，这通常不是必需的。但是，它对某些类型的组件很有用，尤其是在可重用的组件库中。</p>
 <h2 id="转发-refs-到-DOM-组件"><a href="#转发-refs-到-DOM-组件" class="headerlink" title="转发 refs 到 DOM 组件"></a>转发 refs 到 DOM 组件</h2><p>定义一个渲染原生按钮 DOM 元素的 Fancy Button 组件：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyButton</span>(<span class="hljs-params">props</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;FancyButton&quot;</span>&gt;</span></span><br><span class="xml">      &#123;props.children&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyButton</span>(<span class="hljs-params">props</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;FancyButton&quot;</span>&gt;</span></span><br><span class="xml">      &#123;props.children&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 <p>React 组件隐藏了它们的实现细节，包括它们的渲染输出。其他使用 Fancy Button 的组件通常不需要获取内部按钮 DOM 元素的引用。这很好，因为它可以防止组件过度依赖彼此的 DOM 结构。</p>
 <p>尽管此类封装对于 <code>FeedStory </code>或 <code>Comment </code>等应用程序级组件（或者说业务组件）是可取的，但对于高度可重用的“叶子”组件（也可以说是常用的基础组件，如 <code>FancyButton </code>或 <code>MyTextInput</code>）来说可能不方便。这些组件倾向于以与常规 DOM 按钮和输入类似的方式在整个应用程序中使用，并且为了管理焦点、选择或动画而访问它们的 DOM 节点可能是不可避免的。</p>
 <p><strong>Ref 转发是一个可选特性，其允许某些组件接收 <code>ref</code>，并将其向下传递（换句话说，“转发”它）给子组件。</strong></p>
 <p>在下面的示例中，<code>FancyButton</code> 使用 <code>React.forwardRef</code> 来获取传递给它的 <code>ref</code>，然后转发到它渲染的 DOM <code>button</code>：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> FancyButton = React.forwardRef(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;FancyButton&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;props.myClick&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">    &gt;</span></span><br><span class="xml">      &#123;props.children&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  )<br>&#125;);<br><br><span class="hljs-keyword">const</span> FancyButtonWrapper = <span class="hljs-function">() =&gt;</span> &#123;<br><br>  <span class="hljs-comment">// 您现在可以直接获取 DOM 按钮的引用</span><br>  <span class="hljs-keyword">const</span> ref = React.createRef();<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">FancyButton</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> <span class="hljs-attr">myClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;</span><br><span class="xml">      console.log(ref.current) //<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;FancyButton&quot;</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    &#125;&#125;&gt;按钮<span class="hljs-tag">&lt;/<span class="hljs-name">FancyButton</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> FancyButtonWrapper;<br></code></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> FancyButton = React.forwardRef(<span class="hljs-function">(<span class="hljs-params">props, ref</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;FancyButton&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;props.myClick&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">    &gt;</span></span><br><span class="xml">      &#123;props.children&#125;</span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  )<br>&#125;);<br><br><span class="hljs-keyword">const</span> FancyButtonWrapper = <span class="hljs-function">() =&gt;</span> &#123;<br><br>  <span class="hljs-comment">// 您现在可以直接获取 DOM 按钮的引用</span><br>  <span class="hljs-keyword">const</span> ref = React.createRef();<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">FancyButton</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;ref&#125;</span> <span class="hljs-attr">myClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;</span><br><span class="xml">      console.log(ref.current) //<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;FancyButton&quot;</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">    &#125;&#125;&gt;按钮<span class="hljs-tag">&lt;/<span class="hljs-name">FancyButton</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> FancyButtonWrapper;<br></code></pre></div></td></tr></table></figure>
 
 <ul>
 <li><p>这样，使用 <code>FancyButton</code> 的组件可以获取底层 DOM 节点 <code>button</code> 的 ref ，并在必要时访问，就像其直接使用 DOM <code>button</code> 一样。</p>
@@ -376,7 +388,7 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
     NProgress.start()
     window.addEventListener('load', function() {
       NProgress.done();

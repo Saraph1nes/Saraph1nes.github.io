@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&#34;dark&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://sm.ms/image/eQ1utyhqRNC5wa4">
-  <link rel="icon" href="https://sm.ms/image/eQ1utyhqRNC5wa4">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2022/04/04/eQ1utyhqRNC5wa4.jpg">
+  <link rel="icon" href="https://s2.loli.net/2022/04/04/eQ1utyhqRNC5wa4.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#2299dd","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#2299dd","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -112,6 +112,18 @@
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/anniversary/">
+                <i class="iconfont icon-user-fill"></i>
+                纪念日
               </a>
             </li>
           
@@ -218,11 +230,11 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="git-commit规范"><a href="#git-commit规范" class="headerlink" title="git commit规范"></a>git commit规范</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br>&lt;BLANK LINE&gt;<br>&lt;body&gt;<br>&lt;BLANK LINE&gt;<br>&lt;footer&gt;<br>复制代码<br>占位标签解析：<br><span class="hljs-section">type:代表某次提交的类型，比如是修复一个bug还是增加一个新的feature。所有的type类型如下：</span><br><span class="hljs-section">scope:scope说明commit影响的范围。scope依据项目而定，</span><br>		例如在业务项目中可以依据菜单或者功能模块划分，<br>		如果是组件库开发，则可以依据组件划分。<br><span class="hljs-section">subject:是commit的简短描述</span><br><span class="hljs-section">body:提交代码的详细描述</span><br><span class="hljs-section">footer:如果代码的提交是不兼容变更或关闭缺陷，则Footer必需，否则可以省略。</span><br><br><span class="hljs-section">feat[特性]:新增feature </span><br><span class="hljs-section">fix[修复]: 修复bug     </span><br><span class="hljs-section">docs[文档]: 仅仅修改了文档，比如README, CHANGELOG, CONTRIBUTE等等</span><br><span class="hljs-section">style[格式]: 仅仅修改了空格、格式缩进、逗号、console.log删除等等，不改变代码逻辑</span><br><span class="hljs-section">refactor[重构]: 代码重构，没有加新功能或者修复bug</span><br><span class="hljs-section">perf[优化]: 优化相关，比如提升性能、体验</span><br><span class="hljs-section">test[测试]: 测试用例，包括单元测试、集成测试等</span><br><span class="hljs-section">chore[工具]: 改变构建流程、或者增加依赖库、工具等</span><br><span class="hljs-section">revert[回滚]: 回滚到上一个版本</span><br>复制代码<br></code></pre></td></tr></table></figure>
+              <h3 id="git-commit规范"><a href="#git-commit规范" class="headerlink" title="git commit规范"></a>git commit规范</h3><figure class="highlight makefile"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br>&lt;BLANK LINE&gt;<br>&lt;body&gt;<br>&lt;BLANK LINE&gt;<br>&lt;footer&gt;<br>复制代码<br>占位标签解析：<br><span class="hljs-section">type:代表某次提交的类型，比如是修复一个bug还是增加一个新的feature。所有的type类型如下：</span><br><span class="hljs-section">scope:scope说明commit影响的范围。scope依据项目而定，</span><br>		例如在业务项目中可以依据菜单或者功能模块划分，<br>		如果是组件库开发，则可以依据组件划分。<br><span class="hljs-section">subject:是commit的简短描述</span><br><span class="hljs-section">body:提交代码的详细描述</span><br><span class="hljs-section">footer:如果代码的提交是不兼容变更或关闭缺陷，则Footer必需，否则可以省略。</span><br><br><span class="hljs-section">feat[特性]:新增feature </span><br><span class="hljs-section">fix[修复]: 修复bug     </span><br><span class="hljs-section">docs[文档]: 仅仅修改了文档，比如README, CHANGELOG, CONTRIBUTE等等</span><br><span class="hljs-section">style[格式]: 仅仅修改了空格、格式缩进、逗号、console.log删除等等，不改变代码逻辑</span><br><span class="hljs-section">refactor[重构]: 代码重构，没有加新功能或者修复bug</span><br><span class="hljs-section">perf[优化]: 优化相关，比如提升性能、体验</span><br><span class="hljs-section">test[测试]: 测试用例，包括单元测试、集成测试等</span><br><span class="hljs-section">chore[工具]: 改变构建流程、或者增加依赖库、工具等</span><br><span class="hljs-section">revert[回滚]: 回滚到上一个版本</span><br>复制代码<br></code></pre></div></td></tr></table></figure>
 
 
 
-<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[特性]</span>添加头像功能<br><span class="hljs-string">[特性]</span>添加收藏功能<br><span class="hljs-string">[修复]</span>在android机器上传崩溃问题解决<br><span class="hljs-string">[文档]</span>修改README,增加了使用说明<br><span class="hljs-string">[优化]</span>首页图片加载缓慢优化<br><span class="hljs-string">[重构]</span>对头像功能进行封装重构<br></code></pre></td></tr></table></figure>
+<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><figure class="highlight angelscript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-string">[特性]</span>添加头像功能<br><span class="hljs-string">[特性]</span>添加收藏功能<br><span class="hljs-string">[修复]</span>在android机器上传崩溃问题解决<br><span class="hljs-string">[文档]</span>修改README,增加了使用说明<br><span class="hljs-string">[优化]</span>首页图片加载缓慢优化<br><span class="hljs-string">[重构]</span>对头像功能进行封装重构<br></code></pre></div></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -350,7 +362,7 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
     NProgress.start()
     window.addEventListener('load', function() {
       NProgress.done();
