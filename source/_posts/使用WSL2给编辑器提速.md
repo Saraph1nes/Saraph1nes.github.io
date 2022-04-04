@@ -1,5 +1,6 @@
 ---
 title: 使用WSL2给编辑器提速
+index_img: https://s2.loli.net/2022/04/04/dvRi6LwImbyQVHt.png
 date: 2022-02-08 18:25:48
 tags:
 ---

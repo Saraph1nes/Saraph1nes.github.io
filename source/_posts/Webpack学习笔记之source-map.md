@@ -1,5 +1,6 @@
 ---
 title: Webpack学习笔记之source-map
+index_img: https://s2.loli.net/2022/04/04/lKT1Xj7t4iq3sgZ.jpg
 date: 2022-04-04 16:28:20
 tags: webpack
 category: 前端

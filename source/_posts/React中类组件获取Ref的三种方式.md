@@ -1,5 +1,6 @@
 ---
-title: React中类组件获取Ref的三种方式 
+title: React中类组件获取Ref的三种方式
+index_img: https://s2.loli.net/2022/04/04/C7QwKb1uVsrSkj4.jpg
 date: 2022-03-20 12:16:22 
 tags: React 
 category: 前端

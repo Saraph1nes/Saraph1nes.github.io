@@ -1,5 +1,6 @@
 ---
 title: React精进之Refs
+index_img: https://s2.loli.net/2022/04/04/C7QwKb1uVsrSkj4.jpg
 date: 2021-08-22 23:26:20
 tags: React
 category: 前端
