@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Webpack学习笔记之source-map</title>
+    <link href="/2022/04/04/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsource-map/"/>
+    <url>/2022/04/04/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsource-map/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Webpack学习笔记之source-map"><a href="#Webpack学习笔记之source-map" class="headerlink" title="Webpack学习笔记之source-map"></a>Webpack学习笔记之source-map</h1><h2 id="1-eval-默认"><a href="#1-eval-默认" class="headerlink" title="1. eval (默认)"></a>1. eval (默认)</h2><p>每个module会封装到eval里包裹起来执行，并且会在末尾追加注释（用来关联到map以锁定行数）</p><h2 id="2-source-map"><a href="#2-source-map" class="headerlink" title="2. source-map"></a>2. source-map</h2><p>生成一个SourceMap文件</p><h2 id="3-hidden-source-map"><a href="#3-hidden-source-map" class="headerlink" title="3. hidden-source-map"></a>3. hidden-source-map</h2><p>和source-map一样，但不会在bundle末尾追加注释</p><p>把source-map文件打包出来，但不在module中关联，也就不能锁定代码行数了</p><h2 id="4-inline-source-map"><a href="#4-inline-source-map" class="headerlink" title="4.inline-source-map"></a>4.inline-source-map</h2><p>生成一个DataUrl形式的SourceMap</p><p>不会单独把source-map文件打包出来，直接放在module中的eval函数里，能锁定代码行数</p><h2 id="5-eval-source-map"><a href="#5-eval-source-map" class="headerlink" title="5.eval-source-map"></a>5.eval-source-map</h2><p>每个module会通过eval()来执行，并且生成一个DataUrl形式的SourceMap</p><p>不会单独把source-map文件打包出来，直接放在bundle中的eval函数里，能锁定代码行数</p><h2 id="6-cheap-source-map"><a href="#6-cheap-source-map" class="headerlink" title="6. cheap-source-map"></a>6. cheap-source-map</h2><p>生成一个没有列信息(column-mappings)的SourceMap文件，不包含loader的sourcemap(比如babel的sourcemap)</p><p>与source-map相比，只是没有列信息，我们查看报错的时候通常只需要知道行数，可以减少sourceMap文件大小</p><h2 id="7-cheap-module-source-map"><a href="#7-cheap-module-source-map" class="headerlink" title="7. cheap-module-source-map"></a>7. cheap-module-source-map</h2><p>生成一个没有列信息(column-mappings)的SourceMap文件，loader的sourcemap也被简化为只包含对应行的</p><p>推荐开发环境使用，能生成map文件，不记录列数，对于babel解析的source-map，不会导致行数识别问题。</p><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>生产环境一般不用sourcemap功能，原因如下：</p><ul><li>通过bundle和sourcemap文件可以反编译成源码，可能会导致源码暴露</li><li>生产环境一般使用更为小巧的bundle，soucemap文件体积太大</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>webpack</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>React中类组件获取Ref的三种方式</title>
     <link href="/2022/03/20/React%E4%B8%AD%E7%B1%BB%E7%BB%84%E4%BB%B6%E8%8E%B7%E5%8F%96Ref%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <url>/2022/03/20/React%E4%B8%AD%E7%B1%BB%E7%BB%84%E4%BB%B6%E8%8E%B7%E5%8F%96Ref%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
