@@ -6,6 +6,10 @@ deploy:
 
 theme: fluid  # 指定主题
 
+title: Saraph1nes Blog # 标题
+description: Saraph1nes Blog
+author: Saraph1nes # 作者
+
 language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改
 
 admin:
