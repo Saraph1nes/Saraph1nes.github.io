@@ -18,7 +18,7 @@
   <meta name="author" content="Saraph1nes">
   <meta name="keywords" content="">
   
-  <title>Webpack学习笔记之source-map - Saraph1nes Blog</title>
+  <title>leetcode记录(长更) - Saraph1nes Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -151,7 +151,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Webpack学习笔记之source-map">
+            <span class="h2" id="subtitle" title="leetcode记录(长更)">
               
             </span>
 
@@ -161,8 +161,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-04 16:28" pubdate>
-        2022年4月4日 下午
+      <time datetime="2022-04-05 22:49" pubdate>
+        2022年4月5日 晚上
       </time>
     </span>
   
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      391 字
+      444 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       阅读本文大致需要 
-      4
+      5
        分钟
     </span>
   
@@ -221,7 +221,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Webpack学习笔记之source-map</h1>
+            <h1 style="display: none">leetcode记录(长更)</h1>
             
               <p class="note note-info">
                 
@@ -230,23 +230,7 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="Webpack学习笔记之source-map"><a href="#Webpack学习笔记之source-map" class="headerlink" title="Webpack学习笔记之source-map"></a>Webpack学习笔记之source-map</h1><h2 id="1-eval-默认"><a href="#1-eval-默认" class="headerlink" title="1. eval (默认)"></a>1. eval (默认)</h2><p>每个module会封装到eval里包裹起来执行，并且会在末尾追加注释（用来关联到map以锁定行数）</p>
-<h2 id="2-source-map"><a href="#2-source-map" class="headerlink" title="2. source-map"></a>2. source-map</h2><p>生成一个SourceMap文件</p>
-<h2 id="3-hidden-source-map"><a href="#3-hidden-source-map" class="headerlink" title="3. hidden-source-map"></a>3. hidden-source-map</h2><p>和source-map一样，但不会在bundle末尾追加注释</p>
-<p>把source-map文件打包出来，但不在module中关联，也就不能锁定代码行数了</p>
-<h2 id="4-inline-source-map"><a href="#4-inline-source-map" class="headerlink" title="4.inline-source-map"></a>4.inline-source-map</h2><p>生成一个DataUrl形式的SourceMap</p>
-<p>不会单独把source-map文件打包出来，直接放在module中的eval函数里，能锁定代码行数</p>
-<h2 id="5-eval-source-map"><a href="#5-eval-source-map" class="headerlink" title="5.eval-source-map"></a>5.eval-source-map</h2><p>每个module会通过eval()来执行，并且生成一个DataUrl形式的SourceMap</p>
-<p>不会单独把source-map文件打包出来，直接放在bundle中的eval函数里，能锁定代码行数</p>
-<h2 id="6-cheap-source-map"><a href="#6-cheap-source-map" class="headerlink" title="6. cheap-source-map"></a>6. cheap-source-map</h2><p>生成一个没有列信息(column-mappings)的SourceMap文件，不包含loader的sourcemap(比如babel的sourcemap)</p>
-<p>与source-map相比，只是没有列信息，我们查看报错的时候通常只需要知道行数，可以减少sourceMap文件大小</p>
-<h2 id="7-cheap-module-source-map"><a href="#7-cheap-module-source-map" class="headerlink" title="7. cheap-module-source-map"></a>7. cheap-module-source-map</h2><p>生成一个没有列信息(column-mappings)的SourceMap文件，loader的sourcemap也被简化为只包含对应行的</p>
-<p>推荐开发环境使用，能生成map文件，不记录列数，对于babel解析的source-map，不会导致行数识别问题。</p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>生产环境一般不用sourcemap功能，原因如下：</p>
-<ul>
-<li>通过bundle和sourcemap文件可以反编译成源码，可能会导致源码暴露</li>
-<li>生产环境一般使用更为小巧的bundle，soucemap文件体积太大</li>
-</ul>
+              <h2 id="NO-002-两数相加"><a href="#NO-002-两数相加" class="headerlink" title="NO.002 - 两数相加"></a>NO.002 - 两数相加</h2><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * function ListNode(val, next) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.next = (next===undefined ? null : next)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;ListNode&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> addTwoNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">l1, l2</span>) </span>&#123;<br>    <span class="hljs-comment">//定义一个新联表伪指针，用来指向头指针，返回结果</span><br>    <span class="hljs-keyword">let</span> prev = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>    <span class="hljs-comment">//定义一个进位数的指针，用来存储当两数之和大于10的时候，</span><br>    <span class="hljs-keyword">let</span> carry = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//定义一个可移动的指针，用来指向存储两个数之和的位置</span><br>    <span class="hljs-keyword">let</span> cur = prev;<br>    <span class="hljs-comment">//当l1不等于null 或 l2不等于null 就进入循环</span><br>    <span class="hljs-keyword">while</span>(l1 !== <span class="hljs-literal">null</span> || l2 !== <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-comment">// 保持两个链表具有相同的位数,差的用0补齐</span><br>        <span class="hljs-keyword">let</span> x = l1 === <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : l1.val;<br>        <span class="hljs-keyword">let</span> y = l2 === <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : l2.val;<br>        <span class="hljs-comment">//将两个链表的值，进行相加，并加上进位数</span><br>        <span class="hljs-keyword">let</span> sum = x + y + carry;<br>        <span class="hljs-comment">//计算进位数</span><br>        carry = <span class="hljs-built_in">parseInt</span>(sum)<br>        <span class="hljs-comment">//计算两个数的和，此时排除超过10的请况（大于10，取余数）</span><br>        sum = sum % <span class="hljs-number">10</span>;<br>        <span class="hljs-comment">//将求和数赋值给新链表的节点，</span><br>        <span class="hljs-comment">//注意这个时候不能直接将sum赋值给cur.next = sum。这时候会报，类型不匹配。</span><br>        <span class="hljs-comment">//所以这个时候要创一个新的节点，将值赋予节点</span><br>        cur.next = <span class="hljs-keyword">new</span> ListNode(sum);<br>        <span class="hljs-comment">//将新链表的节点后移</span><br>        cur = cur.next;<br>        <span class="hljs-comment">//当链表l1不等于null的时候，将l1 的节点后移</span><br>        <span class="hljs-keyword">if</span>(l1 !== <span class="hljs-literal">null</span>)&#123;<br>            l1 = l1.next;<br>        &#125;<br>        <span class="hljs-comment">//当链表l2 不等于null的时候，将l2的节点后移</span><br>        <span class="hljs-keyword">if</span>(l2 !== <span class="hljs-literal">null</span>)&#123;<br>            l2 = l2.next;<br>        &#125; <br>    &#125;<br>    <span class="hljs-comment">//如果最后两个数，相加的时候有进位数的时候，就将进位数，赋予链表的新节点。</span><br>    <span class="hljs-comment">//两数相加最多小于20，所以的的值最大只能时1</span><br>    <span class="hljs-keyword">if</span>(carry == <span class="hljs-number">1</span>)&#123;<br>        cur.next = <span class="hljs-keyword">new</span> ListNode(carry);<br>    &#125;<br>    <span class="hljs-comment">//返回链表的头节点</span><br>    <span class="hljs-keyword">return</span> prev.next;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
 
             </div>
             <hr>
@@ -256,7 +240,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                     
                   </div>
                 
@@ -264,7 +248,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/webpack/">webpack</a>
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>
                     
                   </div>
                 
@@ -281,18 +269,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/05/leetcode%E8%AE%B0%E5%BD%95(%E9%95%BF%E6%9B%B4)/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode记录(长更)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/20/React%E4%B8%AD%E7%B1%BB%E7%BB%84%E4%BB%B6%E8%8E%B7%E5%8F%96Ref%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-                        <span class="hidden-mobile">React中类组件获取Ref的三种方式</span>
+                      <a href="/2022/04/04/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsource-map/">
+                        <span class="hidden-mobile">Webpack学习笔记之source-map</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
