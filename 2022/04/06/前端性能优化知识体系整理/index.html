@@ -18,7 +18,7 @@
   <meta name="author" content="Saraph1nes">
   <meta name="keywords" content="">
   
-  <title>leetcode记录(长更) - Saraph1nes Blog</title>
+  <title>前端性能优化知识体系整理 - Saraph1nes Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -151,7 +151,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="leetcode记录(长更)">
+            <span class="h2" id="subtitle" title="前端性能优化知识体系整理">
               
             </span>
 
@@ -161,8 +161,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-05 22:49" pubdate>
-        2022年4月5日 晚上
+      <time datetime="2022-04-06 09:42" pubdate>
+        2022年4月6日 上午
       </time>
     </span>
   
@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      444 字
+      1.4k 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       阅读本文大致需要 
-      5
+      15
        分钟
     </span>
   
@@ -221,7 +221,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">leetcode记录(长更)</h1>
+            <h1 style="display: none">前端性能优化知识体系整理</h1>
             
               <p class="note note-info">
                 
@@ -230,7 +230,72 @@
               </p>
             
             <div class="markdown-body">
-              <h2 id="NO-002-两数相加"><a href="#NO-002-两数相加" class="headerlink" title="NO.002 - 两数相加"></a>NO.002 - 两数相加</h2><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * function ListNode(val, next) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.next = (next===undefined ? null : next)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;ListNode&#125;</span> <span class="hljs-variable">l2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;ListNode&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> addTwoNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">l1, l2</span>) </span>&#123;<br>    <span class="hljs-comment">//定义一个新联表伪指针，用来指向头指针，返回结果</span><br>    <span class="hljs-keyword">let</span> prev = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>    <span class="hljs-comment">//定义一个进位数的指针，用来存储当两数之和大于10的时候，</span><br>    <span class="hljs-keyword">let</span> carry = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//定义一个可移动的指针，用来指向存储两个数之和的位置</span><br>    <span class="hljs-keyword">let</span> cur = prev;<br>    <span class="hljs-comment">//当l1不等于null 或 l2不等于null 就进入循环</span><br>    <span class="hljs-keyword">while</span>(l1 !== <span class="hljs-literal">null</span> || l2 !== <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-comment">// 保持两个链表具有相同的位数,差的用0补齐</span><br>        <span class="hljs-keyword">let</span> x = l1 === <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : l1.val;<br>        <span class="hljs-keyword">let</span> y = l2 === <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : l2.val;<br>        <span class="hljs-comment">//将两个链表的值，进行相加，并加上进位数</span><br>        <span class="hljs-keyword">let</span> sum = x + y + carry;<br>        <span class="hljs-comment">//计算进位数</span><br>        carry = <span class="hljs-built_in">parseInt</span>(sum)<br>        <span class="hljs-comment">//计算两个数的和，此时排除超过10的请况（大于10，取余数）</span><br>        sum = sum % <span class="hljs-number">10</span>;<br>        <span class="hljs-comment">//将求和数赋值给新链表的节点，</span><br>        <span class="hljs-comment">//注意这个时候不能直接将sum赋值给cur.next = sum。这时候会报，类型不匹配。</span><br>        <span class="hljs-comment">//所以这个时候要创一个新的节点，将值赋予节点</span><br>        cur.next = <span class="hljs-keyword">new</span> ListNode(sum);<br>        <span class="hljs-comment">//将新链表的节点后移</span><br>        cur = cur.next;<br>        <span class="hljs-comment">//当链表l1不等于null的时候，将l1 的节点后移</span><br>        <span class="hljs-keyword">if</span>(l1 !== <span class="hljs-literal">null</span>)&#123;<br>            l1 = l1.next;<br>        &#125;<br>        <span class="hljs-comment">//当链表l2 不等于null的时候，将l2的节点后移</span><br>        <span class="hljs-keyword">if</span>(l2 !== <span class="hljs-literal">null</span>)&#123;<br>            l2 = l2.next;<br>        &#125; <br>    &#125;<br>    <span class="hljs-comment">//如果最后两个数，相加的时候有进位数的时候，就将进位数，赋予链表的新节点。</span><br>    <span class="hljs-comment">//两数相加最多小于20，所以的的值最大只能时1</span><br>    <span class="hljs-keyword">if</span>(carry == <span class="hljs-number">1</span>)&#123;<br>        cur.next = <span class="hljs-keyword">new</span> ListNode(carry);<br>    &#125;<br>    <span class="hljs-comment">//返回链表的头节点</span><br>    <span class="hljs-keyword">return</span> prev.next;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+              <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><blockquote>
+<p><strong>为什么要做性能优化？</strong></p>
+<p>好的性能优化能大大提高用户的留存率、转化率。</p>
+<p><strong>且由于性能优化的点很多，想通过记录、补充、梳理的方式系统学习</strong></p>
+</blockquote>
+<h2 id="二、对性能优化的解释"><a href="#二、对性能优化的解释" class="headerlink" title="二、对性能优化的解释"></a>二、对性能优化的解释</h2><p>性能优化一般分为两个大类：</p>
+<ul>
+<li>加载时优化</li>
+<li>运行时优化</li>
+</ul>
+<h3 id="1、加载性能"><a href="#1、加载性能" class="headerlink" title="1、加载性能"></a>1、加载性能</h3><p><strong>加载时优化</strong>主要解决的点是提高网站的加载速度，比如压缩文件，用CDN加速等。一般用<code>白屏时间</code>和<code>首屏加载时间</code>来衡量。</p>
+<p><strong>测算白屏时间</strong></p>
+<p>将代码放在<code>&lt;/head&gt;</code>前面就能获取白屏时间</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;script&gt;<br>    <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - performance.timing.navigationStart<br>&lt;/script&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>测算首屏时间</strong><br>在<code>window.onload</code>时间中执行代码</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - performance.timing.navigationStart<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="2、运行性能"><a href="#2、运行性能" class="headerlink" title="2、运行性能"></a>2、运行性能</h3><p>是指页面运行时的性能表现，而不是加载时的性能。</p>
+<p>通过chrome控制台里的<code>性能</code> tab查看，具体方法会单独整理成一篇文章</p>
+<h2 id="三、加载时的性能优化"><a href="#三、加载时的性能优化" class="headerlink" title="三、加载时的性能优化"></a>三、加载时的性能优化</h2><p>我们知道浏览器如果输入的是一个网址，首先要<code>交给DNS域名解析 -&gt; 找到对应的IP地址 -&gt; 然后进行TCP连接 -&gt; 浏览器发送HTTP请求 -&gt; 服务器接收请求 -&gt; 服务器处理请求并返回HTTP报文 -&gt; 以及浏览器接收并解析渲染页面</code>。从这一过程中，其实就可以挖出优化点，缩短请求的时间，从而去加快网站的访问速度，提升性能。</p>
+<p>这个过程中可以提升性能的优化的点：</p>
+<ol>
+<li>DNS解析优化，浏览器访问DNS的时间就可以缩短</li>
+<li>使用HTTP2</li>
+<li>减少HTTP请求数量</li>
+<li>减少http请求大小</li>
+<li>服务器端渲染</li>
+<li>静态资源使用CDN</li>
+<li>资源缓存，不重复加载相同的资源</li>
+</ol>
+<p>从上面几个优化点出发，有以下几种实现性能优化的方式。</p>
+<h3 id="1、DNS-预解析"><a href="#1、DNS-预解析" class="headerlink" title="1、DNS 预解析"></a>1、DNS 预解析</h3><p><strong>DNS解析</strong></p>
+<p>在介绍DNS预解析前，需要先简单了解下什么是DNS解析</p>
+<p>大多数人是通过域名访问网站，当浏览器从（第三方）服务器请求资源时，必须先将该域名解析为 IP地址，然后浏览器才能向该域名发出请求，域名到IP这一过程称为 DNS解析。</p>
+<p>当你的网站第一次请求某个跨域域名时，需要先解析该域名（例如页面访问cdn资源，第一次访问需要先解析cdn）。可以在请求的Timing上看到有一个DNS Lookup阶段，而在这个请求之后的其他该域名的请求都没有这项时间支出。</p>
+<p>DNS解析时间可能导致大量用户感知延迟（在移动端可能比较明显），DNS解析所需的时间差异非常大，延迟范围可以从0ms（本地缓存结果）到几秒钟时间(网络极差)。</p>
+<p><img src="https://s2.loli.net/2022/04/06/jdaIBXJGDe9cNvz.png" srcset="/img/loading.gif" lazyload alt="image-20220406110521788"></p>
+<p><strong>DNS预解析</strong></p>
+<p>DNS 预解析是一项让浏览器主动去执行域名解析的功能。</p>
+<blockquote>
+<p>浏览器试图在用户访问链接之前解析域名，其范围包括文档的所有链接，无论是图片的，CSS 的，还是 JavaScript 等其他用户能够点击的 URL。</p>
+</blockquote>
+<p>因为预读取会在后台执行，所以DNS很可能在链接对应的东西出现之前就已经解析完毕，这能够减少用户点击链接时的延迟。</p>
+<p><strong>DNS预解析的实现</strong></p>
+<p>用meta信息来告知浏览器, 当前页面要做DNS预解析:</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;meta http-equiv=<span class="hljs-string">&quot;x-dns-prefetch-control&quot;</span> content=<span class="hljs-string">&quot;on&quot;</span> /&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>在页面header中使用link标签来强制对DNS预解析:</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;link rel=<span class="hljs-string">&quot;dns-prefetch&quot;</span> href=<span class="hljs-string">&quot;http://Saraph1nes.github.io&quot;</span> /&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>举个例子</strong></p>
+<p>场景：点击按钮切换图片，图片是cdn资源</p>
+<p>不使用DNS预解析：点击后请求cdn上的资源，DNS查询解析成ip，用ip完成后续连接</p>
+<p>使用DNS预解析：点击后请求cdn上的资源，直接用预解析的ip完成后续连接</p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>dns-prefetch需慎用，多页面重复DNS预解析会增加重复DNS查询次数。</p>
+<p>http页面下所有的a标签的href都会自动去启用DNS Prefetch，也就是说，你网页的a标签href带的域名，是不需要在head里面加上link手动设置的。</p>
+<p>https页面需要使用meta标签强制开启：</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;x-dns-prefetch-control&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;on&quot;</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>dns-prefetch适用于网页引用了大量其他域名的资源，例如淘宝。</p>
+</blockquote>
+<h3 id="2、http2"><a href="#2、http2" class="headerlink" title="2、http2"></a>2、http2</h3><p>HTTP/2 是 HTTP 协议自 1999 年 HTTP 1.1 发布后的首个更新，主要基于 SPDY 协议。由互联网工程任务组（IETF）的 Hypertext Transfer Protocol Bis（httpbis）工作小组进行开发。该组织于2014年12月将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。HTTP/2标准于2015年5月以RFC 7540正式发表。</p>
+<p>http1.1为了实现高并发请求，不得不使用多开tcp连接的方式，而由于不同浏览器对于这个多开的数量是有限制的（假设max），也就是http1.1如果请求一个包含1000张图片的html，最多同时开启 max个长连接 去索取资源；这里不包含http1的tcp多次握手的时延。<br>但是在http2当中，由于引入了stream的概念，可以在一条tcp连接当中乱序流水线的发送和接受stream，并根据stream id来组装 header frame和data frame。</p>
 
             </div>
             <hr>
@@ -240,7 +305,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
                     
                   </div>
                 
@@ -248,11 +313,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
-                    
-                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>
+                      <a class="hover-with-bg" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
                     
                   </div>
                 
@@ -269,18 +330,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%95%B4%E7%90%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端性能优化知识体系整理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/04/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsource-map/">
-                        <span class="hidden-mobile">Webpack学习笔记之source-map</span>
+                      <a href="/2022/04/05/leetcode%E8%AE%B0%E5%BD%95(%E9%95%BF%E6%9B%B4)/">
+                        <span class="hidden-mobile">leetcode记录(长更)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
