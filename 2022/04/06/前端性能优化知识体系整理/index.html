@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.9k 字
+      7k 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       阅读本文大致需要 
-      53
+      76
        分钟
     </span>
   
@@ -407,6 +407,131 @@
 <figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-attribute">background</span>-url: <span class="hljs-built_in">url</span>(<span class="hljs-string">/static/img/example.png</span>);<br></code></pre></div></td></tr></table></figure>
 
 <p>对于上面这个样式规则，如果不应用到具体的元素，浏览器不会去下载该图片。所以你可以通过切换 <code>className</code> 的方式，放心得进行 CSS 中图片的懒加载。</p>
+<h2 id="四、运行时的性能优化"><a href="#四、运行时的性能优化" class="headerlink" title="四、运行时的性能优化"></a>四、运行时的性能优化</h2><h3 id="减少重绘与重排（回流）"><a href="#减少重绘与重排（回流）" class="headerlink" title="减少重绘与重排（回流）"></a>减少重绘与重排（回流）</h3><p>浏览器渲染过程：</p>
+<ol>
+<li>解析HTML生成DOM树</li>
+<li>解析CSS生成CSSOM规则树</li>
+<li>将DOM树与CSSOM规则树合并生成Render(渲染)树</li>
+<li>遍历Render(渲染)树开始布局， 计算每一个节点的位置大小信息</li>
+<li>将渲染树每个节点绘制到屏幕上</li>
+</ol>
+<p>需要明白，这五个步骤并不一定一次性顺序完成。</p>
+<p>如果 DOM 或 CSSOM 被修改，以上过程需要重复执行，这样才能计算出哪些像素需要在屏幕上进行重新渲染。</p>
+<p>实际页面中，CSS 与 JavaScript 往往会多次修改 DOM 和 CSSOM。</p>
+<p><strong>重排</strong></p>
+<p>当改变DOM元素位置或者大小时， 会导致浏览器重新生成Render树， 这个过程叫重排</p>
+<p><strong>重绘</strong></p>
+<p>当重新生成渲染树后， 将要将渲染树每个节点绘制到屏幕， 这个过程叫重绘。</p>
+<p><strong>重排触发时机</strong></p>
+<p>重排发生后的根本原理就是元素的几何属性发生改变， 所以从能够改变几何属性的角度入手：</p>
+<ul>
+<li>添加|删除可见的DOM元素</li>
+<li>元素位置发生改变</li>
+<li>元素大小发生改变</li>
+<li>内容变化</li>
+<li>页面渲染器初始化</li>
+<li>浏览器窗口大小发生改变</li>
+</ul>
+<blockquote>
+<p>重绘不一定需要重排，重排必然会导致重绘</p>
+</blockquote>
+<h3 id="样式设置"><a href="#样式设置" class="headerlink" title="样式设置"></a>样式设置</h3><ul>
+<li><p>降低 CSS 选择器的复杂性</p>
+<ol>
+<li><p>浏览器读取选择器，遵循的原则是从选择器的右边到左边读取</p>
+<p>避免使用层级较深的选择器，或其他一些复杂的选择器，以提高CSS渲染效率</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">#block .text p &#123;<br>    <span class="hljs-attr">color</span>: red;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ol>
+<li><p>查找所有 P 元素</p>
+</li>
+<li><p>查找结果 1 中的元素是否有类名为 text 的父元素</p>
+</li>
+<li><p>查找结果 2 中的元素是否有 id 为 block 的父元素</p>
+</li>
+<li><p>CSS 选择器优先级</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">内联 &gt; ID选择器 &gt; 类选择器 &gt; 标签选择器<br></code></pre></div></td></tr></table></figure>
+
+<p>根据以上两个信息可以得出结论。</p>
+<ol>
+<li>选择器越短越好。</li>
+<li>尽量使用高优先级的选择器，例如 ID 和类选择器。</li>
+<li>避免使用通配符 *。</li>
+</ol>
+<p>最后要说一句，据我查找的资料所得，CSS 选择器没有优化的必要，因为最慢和慢快的选择器性能差别非常小。</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>避免使用CSS表达式，CSS表达式是动态设置CSS属性的强大但危险方法，它的问题就在于计算频率很快。不仅仅是在页面显示和缩放时，就是在页面滚动、乃至移动鼠标时都会要重新计算一次</p>
+</li>
+<li><p>元素适当地定义高度或最小高度，否则元素的动态内容载入时，会出现页面元素的晃动或位置，造成回流</p>
+</li>
+<li><p>给图片设置尺寸。如果图片不设置尺寸，首次载入时，占据空间会从0到完全出现，上下左右都可能位移，发生回流</p>
+</li>
+<li><p>要使用table布局，因为一个小改动可能会造成整个table重新布局。而且table渲染通常要3倍于同等元素时间</p>
+</li>
+<li><p>能够使用CSS实现的效果，尽量使用CSS而不使用JS实现</p>
+</li>
+</ul>
+<h3 id="DOM优化"><a href="#DOM优化" class="headerlink" title="DOM优化"></a>DOM优化</h3><ul>
+<li>缓存DOM</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;div&#x27;</span>)<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>减少DOM深度及DOM数量。</p>
+<p>HTML 中标签元素越多，标签的层级越深，浏览器解析DOM并绘制到浏览器中所花的时间就越长，所以应尽可能保持 DOM 元素简洁和层级较少。</p>
+</li>
+<li><p>批量操作DOM</p>
+<p>由于DOM操作比较耗时，且可能会造成回流，因此要避免频繁操作DOM，可以批量操作DOM，先用字符串拼接完毕，再用innerHTML更新DOM</p>
+</li>
+<li><p>批量操作CSS样式</p>
+<p>通过切换class或者使用元素的style.csstext属性去批量操作元素样式</p>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">// 三次重排</span><br>div.style.left = <span class="hljs-string">&#x27;10px&#x27;</span>;<br>div.style.top = <span class="hljs-string">&#x27;10px&#x27;</span>;<br>div.style.width = <span class="hljs-string">&#x27;20px&#x27;</span>;<br><br><span class="hljs-comment">// 一次重排</span><br>el.style.cssText = <span class="hljs-string">&#x27;left: 10px;top: 10px; width: 20px&#x27;</span>;<br></code></pre></div></td></tr></table></figure></li>
+<li><p>在内存中操作DOM</p>
+<p>使用DocumentFragment对象，让DOM操作发生在内存中，而不是页面上</p>
+</li>
+<li><p>DOM元素离线更新</p>
+<p>对DOM进行相关操作时，appendChild可以使用Document Fragment对象进行离线操作，带元素“组装”完成后再一次插入页面，或者使用display:none 对元素隐藏，在元素“消失”后进行相关操作</p>
+<p><strong>科普</strong>：<code>DocumentFragment</code>，文档片段接口，一个没有父对象的最小文档对象。它被作为一个轻量版的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document"><code>Document</code></a> 使用，就像标准的document一样，存储由节点（nodes）组成的文档结构。与document相比，最大的区别是DocumentFragment 不是真实 DOM 树的一部分，它的变化不会触发 DOM 树的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Reflow">重新渲染</a>，且不会导致性能等问题。</p>
+<p>最常用的方法是使用文档片段作为参数（例如，任何 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node"><code>Node</code></a> 接口类似 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild"><code>Node.appendChild</code></a> 和 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/insertBefore"><code>Node.insertBefore</code></a> 的方法），这种情况下被添加（append）或被插入（inserted）的是片段的所有子节点, 而非片段本身。因为所有的节点会被一次插入到文档中，而这个操作仅发生一个重渲染的操作，而不是每个节点分别被插入到文档中，因为后者会发生多次重渲染的操作。</p>
+</li>
+<li><p>DOM读写分离</p>
+<p>浏览器具有惰性渲染机制，连接多次修改DOM可能只触发浏览器的一次渲染。而如果修改DOM后，立即读取DOM</p>
+<p>为了保证读取到正确的DOM值，会触发浏览器的一次渲染</p>
+<p>因此，修改DOM的操作要与访问DOM分开进行</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">// bad 强制刷新 触发四次重排+重绘 性能不好</span><br>div.style.left = div.offsetLeft + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.top = div.offsetTop + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.right = div.offsetRight + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.bottom = div.offsetBottom + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br><br><br><span class="hljs-comment">// good 缓存布局信息 相当于读写分离 触发一次重排+重绘 优化性能</span><br><span class="hljs-keyword">var</span> curLeft = div.offsetLeft;<br><span class="hljs-keyword">var</span> curTop = div.offsetTop;<br><span class="hljs-keyword">var</span> curRight = div.offsetRight;<br><span class="hljs-keyword">var</span> curBottom = div.offsetBottom;<br><br>div.style.left = curLeft + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.top = curTop + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.right = curRight + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.bottom = curBottom + <span class="hljs-number">1</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>事件代理</p>
+<p>事件代理是指将事件监听器注册在父级元素上，由于子元素的事件会通过事件冒泡的方式向上传播到父节点，因此，可以由父节点的监听函数统一处理多个子元素的事件</p>
+<p>利用事件代理，可以减少内存使用，提高性能及降低代码复杂度</p>
+</li>
+<li><p>防抖和节流</p>
+<p>使用函数节流（throttle）或函数去抖（debounce），限制某一个方法的频繁触发</p>
+</li>
+<li><p>及时清理环境</p>
+<p>及时消除对象引用，清除定时器，清除事件监听器，创建最小作用域变量，可以及时回收内存</p>
+</li>
+</ul>
+<h3 id="刷新率"><a href="#刷新率" class="headerlink" title="刷新率"></a>刷新率</h3><p>FPS 表示的是每秒钟画面更新次数，当今大多数设备的屏幕刷新率都是60次/秒，在两次硬件刷新之间浏览器进行两次重绘是没有意义的只会消耗性能，那么浏览器渲染动画或页面的每一帧的速率，也需要跟设备的刷新率保持一致。</p>
+<p>也就是说，浏览器对每一帧画面的渲染工作需要在16ms（1000ms/60）之内完成，也就是说每一次渲染都要在 16ms才不会掉帧。</p>
+<p>在这16ms 内浏览器要完成的工作有如下图，这一系列操作通常被称为像素管道（The pixel pipeline）</p>
+<p><img src="https://web-dev.imgix.net/image/T4FyVKpzu4WKF1kBNvXepbi08t52/gfQC4uOnIbLVtkdvbSY4.jpg?auto=format" srcset="/img/loading.gif" lazyload alt="The full pixel pipeline."></p>
+<ul>
+<li>脚本执行（JavaScript）：脚本造成了需要重绘的改动，比如增删 DOM、请求动画等</li>
+<li>样式计算（CSS Object Model）：级联地生成每个节点的生效样式。</li>
+<li>布局（Layout）：计算布局，执行渲染算法</li>
+<li>重绘（Paint）：各层分别进行绘制（比如 3D 动画）</li>
+<li>合成（Composite）：将位图发送给合成线程。</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/04/07/RqZKhyYxHXAoWwd.jpg" srcset="/img/loading.gif" lazyload alt="preview"></p>
+<h3 id="使用-requestAnimationFrame"><a href="#使用-requestAnimationFrame" class="headerlink" title="使用 requestAnimationFrame"></a>使用 requestAnimationFrame</h3><p>使用js创建动画时，用 requestAnimationFrame 替代setTimeout<code>或</code>setInterval来实现视觉变化，使用 <code>requestAnimationFrame</code> 从而保证 JavaScript 在帧开始时运行。</p>
+<p>如果采取 <code>setTimeout</code> 或 <code>setInterval</code> 来实现动画的话，回调函数将在帧中的某个时点运行，可能刚好在末尾，而这可能经常会使我们丢失帧，导致卡顿。</p>
 
             </div>
             <hr>
