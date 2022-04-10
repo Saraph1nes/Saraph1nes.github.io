@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      843 字
+      859 字
     </span>
   
 
@@ -235,7 +235,7 @@
 
 <h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>动态规划是牺牲空间换取时间的一种方法</p>
 <blockquote>
-<p>思路: 比如串<code>abcba</code>是回文串的前提条件是<code>bcb</code>是一个回文串，<code>bcb</code>是回文串的条件是<code>a</code>是回文串。<br>如果<code>a</code>,<code>bcb</code>不是回文串，<code>abcba</code>就一定不是回文串<br>我们在判断<code>abcba</code>是否为回文串时，只需要把<code>a</code>，<code>bcb</code>的判断结果存下来，直接查询结果，就可以减少时间成本<br>我们使用一个二维数组来记录两个指针直接是否为回文串</p>
+<p>思路: 比如串<code>abcba</code>是回文串的前提条件是<code>bcb</code>是一个回文串，<code>bcb</code>是回文串的条件是<code>a</code>是回文串。<br>如果<code>a</code>,<code>bcb</code>不是回文串，<code>abcba</code>就一定不是回文串<br>我们在判断<code>abcba</code>是否为回文串时，只需要把<code>a</code>，<code>bcb</code>的判断结果存下来，直接查询结果，就可以减少时间成本<br>我们使用一个二维数组来记录两个指针直接是否为回文串<br>可以自己体验一下：<a target="_blank" rel="noopener" href="https://alchemist-al.com/algorithms/longest-palindromic-substring">https://alchemist-al.com/algorithms/longest-palindromic-substring</a></p>
 </blockquote>
 <p>我们使用cbdbcb这个串来举个例子</p>
 <ol>
