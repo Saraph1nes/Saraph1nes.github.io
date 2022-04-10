@@ -173,7 +173,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7k 字
+      7.4k 字
     </span>
   
 
@@ -183,7 +183,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       阅读本文大致需要 
-      76
+      80
        分钟
     </span>
   
@@ -521,7 +521,7 @@
 <h3 id="刷新率"><a href="#刷新率" class="headerlink" title="刷新率"></a>刷新率</h3><p>FPS 表示的是每秒钟画面更新次数，当今大多数设备的屏幕刷新率都是60次/秒，在两次硬件刷新之间浏览器进行两次重绘是没有意义的只会消耗性能，那么浏览器渲染动画或页面的每一帧的速率，也需要跟设备的刷新率保持一致。</p>
 <p>也就是说，浏览器对每一帧画面的渲染工作需要在16ms（1000ms/60）之内完成，也就是说每一次渲染都要在 16ms才不会掉帧。</p>
 <p>在这16ms 内浏览器要完成的工作有如下图，这一系列操作通常被称为像素管道（The pixel pipeline）</p>
-<p><img src="https://web-dev.imgix.net/image/T4FyVKpzu4WKF1kBNvXepbi08t52/gfQC4uOnIbLVtkdvbSY4.jpg?auto=format" srcset="/img/loading.gif" lazyload alt="The full pixel pipeline."></p>
+<p><img src="https://s2.loli.net/2022/04/08/olGMhjsfu5AkLpE.jpg" srcset="/img/loading.gif" lazyload alt="The full pixel pipeline."></p>
 <ul>
 <li>脚本执行（JavaScript）：脚本造成了需要重绘的改动，比如增删 DOM、请求动画等</li>
 <li>样式计算（CSS Object Model）：级联地生成每个节点的生效样式。</li>
@@ -529,7 +529,30 @@
 <li>重绘（Paint）：各层分别进行绘制（比如 3D 动画）</li>
 <li>合成（Composite）：将位图发送给合成线程。</li>
 </ul>
+<p>渲染时的每一帧都会经过管道的各部分进行处理，但并不意味着所有的部分都会执行。实际上，在实现视觉变化效果时，管道针对指定帧通常有三种方式：</p>
+<ol>
+<li>JS / CSS &gt; 样式 &gt; 布局 &gt; 绘制 &gt; 合成</li>
+</ol>
+<blockquote>
+<p>如果修改一个 DOM 元素的 Layout 属性，也就是改变了元素的样式（比如 width、height 或者 position 等），那么浏览器会检查哪些元素需要重新布局，然后对页面激发一个 reflow（重排）过程完成重新布局。被 reflow（重排）的元素，接下来也会激发绘制过程，最后激发渲染层合并过程，生成最后的画面。</p>
+</blockquote>
+<p><img src="https://web-dev.imgix.net/image/T4FyVKpzu4WKF1kBNvXepbi08t52/gfQC4uOnIbLVtkdvbSY4.jpg?auto=format" srcset="/img/loading.gif" lazyload alt="The full pixel pipeline."></p>
+<ol start="2">
+<li>JS / CSS &gt; 样式 &gt; 绘制 &gt; 合成</li>
+</ol>
+<blockquote>
+<p>如果你修改一个 DOM 元素的 Paint Only 属性，比如背景图片、文字颜色或阴影等，这些属性不会影响页面的布局，因此浏览器会在完成样式计算之后，跳过布局过程，只会绘制和渲染层合并过程。</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/04/08/wIueBvTmESKjNqP.jpg" srcset="/img/loading.gif" lazyload alt="preview"></p>
+<ol start="3">
+<li><p>JS / CSS &gt; 样式 &gt; 合成</p>
+<blockquote>
+<p>如果你修改一个非样式且非绘制的 CSS 属性，那么浏览器会在完成样式计算之后，跳过布局和绘制的过程，直接做渲染层合并。这种方式在性能上是最理想的，对于动画和滚动这种负荷很重的渲染，我们要争取使用第三种渲染过程。</p>
+</blockquote>
+</li>
+</ol>
 <p><img src="https://s2.loli.net/2022/04/07/RqZKhyYxHXAoWwd.jpg" srcset="/img/loading.gif" lazyload alt="preview"></p>
+<p>影响 Layout、Paint 和 Composite 的属性都可以通过 <a href="https://link.zhihu.com/?target=https://csstriggers.com/">CSS Triggers</a> 网站查阅。</p>
 <h3 id="使用-requestAnimationFrame"><a href="#使用-requestAnimationFrame" class="headerlink" title="使用 requestAnimationFrame"></a>使用 requestAnimationFrame</h3><p>使用js创建动画时，用 requestAnimationFrame 替代setTimeout<code>或</code>setInterval来实现视觉变化，使用 <code>requestAnimationFrame</code> 从而保证 JavaScript 在帧开始时运行。</p>
 <p>如果采取 <code>setTimeout</code> 或 <code>setInterval</code> 来实现动画的话，回调函数将在帧中的某个时点运行，可能刚好在末尾，而这可能经常会使我们丢失帧，导致卡顿。</p>
 
@@ -565,6 +588,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/04/10/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88%E6%9A%B4%E5%8A%9B%20+%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最长回文子串（暴力 + 动态规划）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
