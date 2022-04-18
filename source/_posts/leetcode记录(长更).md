@@ -1,6 +1,6 @@
 ---
 title: leetcode记录(长更)
-date: 2022-04-05 22:49:38
+date: 2022-04-18 21:46:38
 index_img: https://s2.loli.net/2022/04/05/jtXxbcHS6QE4Ypr.png
 tags: [leetcode, 力扣, js]
 category: 算法
@@ -61,5 +61,47 @@ var addTwoNumbers = function(l1, l2) {
     }
     //返回链表的头节点
     return prev.next;
+};
+```
+## NO.20 括号
+标准解法
+```ts
+function isValid(s: string): boolean {
+    const stack = []
+    const map = new Map([
+        [')','('],
+        [']','['],
+        ['}','{']
+    ])
+    // 遍历字符串
+    for(let i = 0;i<s.length;i++){
+        // 正括号直接进栈
+        if(map.has(s[i])){
+            // 栈空 或者 没有对应符号
+            if(stack.length === 0 || stack[stack.length - 1] !== map.get(s[i])){
+                return false
+            }
+            // 反括号和栈顶对应
+            if(stack[stack.length - 1] === map.get(s[i])){
+                // 出栈
+                stack.pop()
+            }
+        }else{
+            stack.push(s[i])
+        }
+    }
+    return !stack.length
+};
+```
+
+牛逼解法
+```ts
+function isValid(s: string): boolean {
+    const halfLen = Math.floor(s.length / 2)
+    // 遍历字符串
+    for(let i = 0;i<halfLen;i++){
+        s = s.replace('{}','').replace('[]','').replace('()','')
+    }
+    return !s.length
 };
 ```
