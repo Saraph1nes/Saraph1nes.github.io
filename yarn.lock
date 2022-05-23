@@ -951,27 +951,14 @@ crypto-browserify@^3.0.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-css-parse@1.7.x:
-  version "1.7.0"
-  resolved "https://registry.npm.taobao.org/css-parse/download/css-parse-1.7.0.tgz"
-  integrity sha1-Mh9s9zeCpv91ERE5D8BeLGV9jJs=
-
-css-parse@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/css-parse/download/css-parse-2.0.0.tgz"
-  integrity sha1-pGjuZnwW2BzPBcWMONKpfHgNv9Q=
+css@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/css/-/css-3.0.0.tgz#4447a4d58fdd03367c516ca9f64ae365cee4aa5d"
+  integrity sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==
   dependencies:
-    css "^2.0.0"
-
-css@^2.0.0:
-  version "2.2.4"
-  resolved "https://registry.npm.taobao.org/css/download/css-2.2.4.tgz?cache=0&sync_timestamp=1593663579643&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcss%2Fdownload%2Fcss-2.2.4.tgz"
-  integrity sha1-xkZ1XHOXHyu6amAeLPL9cbEpiSk=
-  dependencies:
-    inherits "^2.0.3"
+    inherits "^2.0.4"
     source-map "^0.6.1"
-    source-map-resolve "^0.5.2"
-    urix "^0.1.0"
+    source-map-resolve "^0.6.0"
 
 cssom@^0.4.4:
   version "0.4.4"
@@ -1025,12 +1012,12 @@ debug@4:
   dependencies:
     ms "2.1.2"
 
-debug@~3.1.0:
-  version "3.1.0"
-  resolved "https://registry.nlark.com/debug/download/debug-3.1.0.tgz?cache=0&sync_timestamp=1625374675284&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdebug%2Fdownload%2Fdebug-3.1.0.tgz"
-  integrity sha1-W7WgZyYotkFJVmuhaBnmFRjGcmE=
+debug@^4.3.2:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
-    ms "2.0.0"
+    ms "2.1.2"
 
 decimal.js@^10.2.1:
   version "10.3.1"
@@ -1627,18 +1614,6 @@ glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-glob@7.0.x:
-  version "7.0.6"
-  resolved "https://registry.nlark.com/glob/download/glob-7.0.6.tgz?cache=0&sync_timestamp=1620337382269&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglob%2Fdownload%2Fglob-7.0.6.tgz"
-  integrity sha1-IRuvr0nlJbjNkyYNFKsTYVKz9Xo=
-  dependencies:
-    fs.realpath "^1.0.0"
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "^3.0.2"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
 glob@^4.0.5:
   version "4.5.3"
   resolved "https://registry.nlark.com/glob/download/glob-4.5.3.tgz?cache=0&sync_timestamp=1620337382269&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglob%2Fdownload%2Fglob-4.5.3.tgz"
@@ -1902,13 +1877,13 @@ hexo-renderer-marked@^4.0.0:
     jsdom "^16.7.0"
     marked "^2.1.3"
 
-hexo-renderer-stylus@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.npm.taobao.org/hexo-renderer-stylus/download/hexo-renderer-stylus-2.0.1.tgz"
-  integrity sha1-xlVm6X6QWKUuRsgrDEXPVh9LlMs=
+hexo-renderer-stylus@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/hexo-renderer-stylus/-/hexo-renderer-stylus-2.1.0.tgz#4cbae08d36c7390b791c2cc3df7c53c3ff615106"
+  integrity sha512-Nef4YCr7JX8jaRaByhzXMSsWnDed+RgJj6aU/ARnYu3Bn5xz/qRz52VJG7KqD0Xuysxa9TIBdVUgNzBrSFn3DQ==
   dependencies:
-    nib "^1.1.2"
-    stylus "^0.54.8"
+    nib "^1.2.0"
+    stylus "^0.57.0"
 
 hexo-server@^2.0.0:
   version "2.0.0"
@@ -2699,7 +2674,7 @@ minimatch@^2.0.1:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimatch@^3.0.2, minimatch@^3.0.4:
+minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz"
   integrity sha1-UWbihkV/AzBgZL5Ul+jbsMPTIIM=
@@ -2719,17 +2694,12 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@0.5.x, mkdirp@^0.5.0:
+mkdirp@^0.5.0:
   version "0.5.5"
   resolved "https://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.5.tgz"
   integrity sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8=
   dependencies:
     minimist "^1.2.5"
-
-mkdirp@~1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npm.taobao.org/mkdirp/download/mkdirp-1.0.4.tgz"
-  integrity sha1-PrXtYmInVteaXw4qIh3+utdcL34=
 
 module-deps@^3.7.11:
   version "3.9.1"
@@ -2816,12 +2786,10 @@ negotiator@0.6.2:
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
-nib@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.nlark.com/nib/download/nib-1.1.2.tgz"
-  integrity sha1-amnt5AgblcDe+L4CSkyK4MLLtsc=
-  dependencies:
-    stylus "0.54.5"
+nib@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/nib/-/nib-1.2.0.tgz#cf650a975307edaa8683470430f82ba132bf9f7b"
+  integrity sha512-7HgrnMl/3yOmWykueO8/D0q+0iWwe7Z+CK2Eaq/xQV8w1hK80WN1oReRQkfkrztbAAnp/nTHkUSl5EcVkor6JQ==
 
 no-case@^3.0.4:
   version "3.0.4"
@@ -3434,11 +3402,6 @@ safe-regex@^1.1.0:
   resolved "https://registry.npm.taobao.org/safer-buffer/download/safer-buffer-2.1.2.tgz"
   integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
 
-sax@0.5.x:
-  version "0.5.8"
-  resolved "https://registry.nlark.com/sax/download/sax-0.5.8.tgz"
-  integrity sha1-1HLbIo6zMcJQaw6MFVJK25OdEsE=
-
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.nlark.com/sax/download/sax-1.2.4.tgz"
@@ -3450,11 +3413,6 @@ saxes@^5.0.1:
   integrity sha1-7rq5U/o7dgjb6U5drbFciI+maW0=
   dependencies:
     xmlchars "^2.2.0"
-
-semver@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.nlark.com/semver/download/semver-6.3.0.tgz"
-  integrity sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=
 
 send@0.1.1:
   version "0.1.1"
@@ -3580,7 +3538,7 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
-source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
+source-map-resolve@^0.5.0:
   version "0.5.3"
   resolved "https://registry.npm.taobao.org/source-map-resolve/download/source-map-resolve-0.5.3.tgz?cache=0&sync_timestamp=1584829552965&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsource-map-resolve%2Fdownload%2Fsource-map-resolve-0.5.3.tgz"
   integrity sha1-GQhmvs51U+H48mei7oLGBrVQmho=
@@ -3591,17 +3549,18 @@ source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
+source-map-resolve@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.6.0.tgz#3d9df87e236b53f16d01e58150fc7711138e5ed2"
+  integrity sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==
+  dependencies:
+    atob "^2.1.2"
+    decode-uri-component "^0.2.0"
+
 source-map-url@^0.4.0:
   version "0.4.1"
   resolved "https://registry.nlark.com/source-map-url/download/source-map-url-0.4.1.tgz"
   integrity sha1-CvZmBadFpaL5HPG7+KevvCg97FY=
-
-source-map@0.1.x:
-  version "0.1.43"
-  resolved "https://registry.nlark.com/source-map/download/source-map-0.1.43.tgz"
-  integrity sha1-wkvBRspRfBRx9drL4lcbK3+eM0Y=
-  dependencies:
-    amdefine ">=0.0.4"
 
 source-map@^0.5.3, source-map@^0.5.6:
   version "0.5.7"
@@ -3743,30 +3702,16 @@ strip-indent@^3.0.0:
   dependencies:
     min-indent "^1.0.0"
 
-stylus@0.54.5:
-  version "0.54.5"
-  resolved "https://registry.npm.taobao.org/stylus/download/stylus-0.54.5.tgz"
-  integrity sha1-QrlWCTHKcJDOhRWnmLqeaqPW3Hk=
+stylus@^0.57.0:
+  version "0.57.0"
+  resolved "https://registry.yarnpkg.com/stylus/-/stylus-0.57.0.tgz#a46f04f426c19ceef54abb1a9d189fd4e886df41"
+  integrity sha512-yOI6G8WYfr0q8v8rRvE91wbxFU+rJPo760Va4MF6K0I6BZjO4r+xSynkvyPBP9tV1CIEUeRsiidjIs2rzb1CnQ==
   dependencies:
-    css-parse "1.7.x"
-    debug "*"
-    glob "7.0.x"
-    mkdirp "0.5.x"
-    sax "0.5.x"
-    source-map "0.1.x"
-
-stylus@^0.54.8:
-  version "0.54.8"
-  resolved "https://registry.npm.taobao.org/stylus/download/stylus-0.54.8.tgz"
-  integrity sha1-PaPmWWa8Vnp7BEv+DuzmU+CZ0Uc=
-  dependencies:
-    css-parse "~2.0.0"
-    debug "~3.1.0"
+    css "^3.0.0"
+    debug "^4.3.2"
     glob "^7.1.6"
-    mkdirp "~1.0.4"
     safer-buffer "^2.1.2"
     sax "~1.2.4"
-    semver "^6.3.0"
     source-map "^0.7.3"
 
 subarg@^1.0.0:
