@@ -784,7 +784,7 @@ archive:
 # Category Page
 #---------------------------
 category:
-  enable: false
+  enable: true
   banner_img: https://sm.ms/image/sG96igqRDyLxeO7
   banner_img_height: 60
   banner_mask_alpha: 0.3
@@ -814,7 +814,7 @@ category:
 # Tag Page
 #---------------------------
 tag:
-  enable: false
+  enable: true
   banner_img: https://saraph1nes-bucket.oss-cn-hangzhou.aliyuncs.com/imgs/infos/wallhaven-l3989p.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
