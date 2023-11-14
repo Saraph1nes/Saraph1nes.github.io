@@ -18,7 +18,7 @@
   <meta name="author" content="Saraph1nes">
   <meta name="keywords" content="">
   
-  <title>【力扣765】情侣牵手 - Saraph1nes Blog</title>
+  <title>go换源 - Saraph1nes Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="【力扣765】情侣牵手">
+            <span class="h2" id="subtitle" title="go换源">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-11-11 15:33" pubdate>
-        2023年11月11日 下午
+      <time datetime="2023-11-14 20:28" pubdate>
+        2023年11月14日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      275 字
+      84 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       阅读本文大致需要 
-      3
+      1
        分钟
     </span>
   
@@ -233,18 +233,23 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【力扣765】情侣牵手</h1>
+            <h1 style="display: none">go换源</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="情侣牵手问题"><a href="#情侣牵手问题" class="headerlink" title="情侣牵手问题"></a>情侣牵手问题</h2><p>今天双11，但我感觉好像一个月前双11活动就开始了，今天居然才是双11</p>
-<p>我的思路是贪心，代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> minSwapsCouples = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">row</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> swap = <span class="hljs-function">(<span class="hljs-params">arr, a, b</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> cur = arr[a]<br>    arr[a] = arr[b]<br>    arr[b] = cur<br>  &#125;<br><br><br>  <span class="hljs-keyword">let</span> len = row.length;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> cache = [];<br><br>  <span class="hljs-comment">// cache方便查找对应值的索引是多少</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>    cache[row[i]] = i;<br>  &#125;<br><br>  <span class="hljs-comment">// 遍历情侣对</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i += <span class="hljs-number">2</span>) &#123;<br>    <span class="hljs-comment">// 情侣对第一个数的值</span><br>    <span class="hljs-keyword">let</span> a = row[i];<br>    <span class="hljs-comment">// 排列完成后，左边肯定是偶数，右边为奇数，当a为偶数时，b为a+1，a为奇数时，b为a-1</span><br>    <span class="hljs-keyword">let</span> b = a ^ <span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">// 如果row[i + 1] === b，说明这一组已经在最终位置了</span><br>    <span class="hljs-comment">// 如果row[i + 1] !== b，说明需要换位置</span><br>    <span class="hljs-keyword">if</span> (row[i + <span class="hljs-number">1</span>] !== b) &#123;<br>      <span class="hljs-comment">// src是当前位置后一位置索引</span><br>      <span class="hljs-keyword">let</span> src = i + <span class="hljs-number">1</span><br>      <span class="hljs-comment">// tar是最终值在row中的索引</span><br>      <span class="hljs-keyword">let</span> tar = cache[b]<br><br>      <span class="hljs-comment">// 交换元素之前同步cache</span><br>      cache[row[tar]] = src<br>      cache[row[src]] = tar<br><br>      <span class="hljs-comment">// 交换并计数</span><br>      swap(row, src, tar)<br>      res++;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+              <p>Go版本1.13及以上：<br>任何系统都可以在编译器终端执行以下操作（最推荐）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">$ go env -w GO111MODULE=on<br>$ go env -w GOPROXY=https://goproxy.cn,direct<br></code></pre></div></td></tr></table></figure>
+
+<p>MacOS或Linux也可以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">$ export GO111MODULE=on<br>$ export GOPROXY=https://goproxy.cn,direct<br></code></pre></div></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">$ echo &quot;export GO111MODULE=on&quot; &gt;&gt; ~/.profile<br>$ echo &quot;export GOPROXY=https://goproxy.cn,direct&quot; &gt;&gt; ~/.profile<br>$ source ~/.profile<br></code></pre></div></td></tr></table></figure>
 
             </div>
             <hr>
@@ -254,7 +259,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
                     
                   </div>
                 
@@ -262,9 +267,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a>
+                      <a class="hover-with-bg" href="/tags/GO/">GO</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%8D%A2%E6%BA%90/">换源</a>
                     
                   </div>
                 
@@ -281,18 +288,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/14/go%E6%8D%A2%E6%BA%90/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">go换源</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/17/%E3%80%90%E8%AF%91%E3%80%91%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%20bundle%20analyzer/">
-                        <span class="hidden-mobile">【译】如何使用webpack bundle analyzer</span>
+                      <a href="/2023/11/11/%E3%80%90%E5%8A%9B%E6%89%A3765%E3%80%91%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B/">
+                        <span class="hidden-mobile">【力扣765】情侣牵手</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
