@@ -6,24 +6,26 @@ export default defineConfig({
   description: "Saraph1nes的博客",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local'
+    },
     logo: "/logo.svg",
     nav: [
       { text: "主页", link: "/" },
+      { text: "文章", link: "/src/article/" },
       {
-        text: "文章",
+        text: "专题",
         items: [
-          { text: "前端技术", link: "/src/frontendTech/asdasd.md" },
-          { text: "其他技术", link: "/src/otherTech/asdasd.md" },
-          { text: "一些文章", link: "/src/about/me.md" },
-          { text: "其他分类", link: "/src/about/history.md" },
+          { text: "前端专题", link: "/src/frontendTech/" },
+          { text: "算法专题", link: "/src/algorithm/" },
         ],
       },
       {
         text: "关于",
         items: [
-          { text: "关于我", link: "/src/about/me.md" },
-          { text: "我的项目", link: "/src/about/product.md" },
-          { text: "博客历史", link: "/src/about/history.md" },
+          { text: "关于我", link: "/src/about/me" },
+          { text: "我的项目", link: "/src/about/product" },
+          { text: "博客历史", link: "/src/about/history" },
         ],
       },
     ],
@@ -33,8 +35,8 @@ export default defineConfig({
         {
           text: "React",
           items: [
-            { text: "React useState 原理", link: "/guide/" },
-            { text: "ReactDOM.createRoot().render()解析", link: "/guide/one" },
+            { text: "React useState 原理", link: "/src/frontendTech/react-use-state-principle" },
+            { text: "ReactDOM.createRoot().render()解析", link: "/src/frontendTech/react-dom-create-root" },
           ],
         },
         {
@@ -42,11 +44,11 @@ export default defineConfig({
           items: [
             {
               text: "Vue3响应式学习",
-              link: "/posts/frontendTech/vue3响应式原理.md",
+              link: "/src/frontendTech/vue3-reactivity-principle",
             },
             {
               text: "vue-router 导航守卫学习笔记",
-              link: "/posts/frontendTech/vue3响应式原理.md",
+              link: "/src/frontendTech/vue-router-navigation-guards",
             },
           ],
         },
@@ -74,5 +76,6 @@ export default defineConfig({
   base: "/sablog/",
   head: [
       ['link', { rel: 'icon', href: 'logo.svg' }]
-  ]
+  ],
+  lastUpdated: true,
 });
