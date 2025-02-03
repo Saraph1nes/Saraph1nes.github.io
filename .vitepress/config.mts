@@ -2,7 +2,6 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/sablog/",
   title: "Saraph1nes Blog",
   description: "Saraph1nes的博客",
   themeConfig: {
@@ -13,24 +12,24 @@ export default defineConfig({
       {
         text: "文章",
         items: [
-          { text: "前端技术", link: "/posts/frontendTech/asdasd.md" },
-          { text: "其他技术", link: "/posts/otherTech/asdasd.md" },
-          { text: "一些文章", link: "/posts/about/me.md" },
-          { text: "其他分类", link: "/posts/about/history.md" },
+          { text: "前端技术", link: "/src/frontendTech/asdasd.md" },
+          { text: "其他技术", link: "/src/otherTech/asdasd.md" },
+          { text: "一些文章", link: "/src/about/me.md" },
+          { text: "其他分类", link: "/src/about/history.md" },
         ],
       },
       {
         text: "关于",
         items: [
-          { text: "关于我", link: "/posts/about/me.md" },
-          { text: "我的项目", link: "/posts/about/product.md" },
-          { text: "博客历史", link: "/posts/about/history.md" },
+          { text: "关于我", link: "/src/about/me.md" },
+          { text: "我的项目", link: "/src/about/product.md" },
+          { text: "博客历史", link: "/src/about/history.md" },
         ],
       },
     ],
 
     sidebar: {
-      "/posts/frontendTech/": [
+      "/src/frontendTech/": [
         {
           text: "React",
           items: [
@@ -69,4 +68,8 @@ export default defineConfig({
 
     socialLinks: [{ icon: "github", link: "https://github.com/Saraph1nes" }],
   },
+  // 指定放置生成的静态资源的目录
+  assetsDir: 'static',
+  // 站点将部署到的 base URL
+  base: "/sablog/",
 });
