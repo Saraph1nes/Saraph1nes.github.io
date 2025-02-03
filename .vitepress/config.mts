@@ -72,4 +72,7 @@ export default defineConfig({
   assetsDir: 'static',
   // 站点将部署到的 base URL
   base: "/sablog/",
+  head: [
+      ['link', { rel: 'icon', href: 'logo.svg' }]
+  ]
 });
