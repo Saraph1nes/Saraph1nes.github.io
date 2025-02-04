@@ -33,6 +33,63 @@ export default defineConfig({
     sidebar: {
       "/src/frontendTech/": [
         {
+          text: "Javascript",
+          items: [
+            {
+              text: "var、let、const",
+              link: "/src/frontendTech/var-let-const",
+            },
+            {
+              text: "数据类型检测",
+              link: "/src/frontendTech/js-data-type-detection",
+            },
+            {
+              text: "this指向",
+              link: "/src/frontendTech/js-this",
+            },
+            {
+              text: "Symbol",
+              link: "/src/frontendTech/js-symbol",
+            },
+            {
+              text: "Proxy & Reflect",
+              link: "/src/frontendTech/js-proxy-reflect",
+            },
+            {
+              text: "原型和原型链",
+              link: "/src/frontendTech/js-prototype",
+            },
+            {
+              text: "Promise",
+              link: "/src/frontendTech/js-promise",
+            },
+            {
+              text: "new 操作符",
+              link: "/src/frontendTech/js-new",
+            },
+            {
+              text: "Set 和 Map",
+              link: "/src/frontendTech/js-set-map",
+            },
+            {
+              text: "apply、call、bind",
+              link: "/src/frontendTech/js-apply-call-bind",
+            },
+            {
+              text: "Generator",
+              link: "/src/frontendTech/js-generator",
+            },
+            {
+              text: "BigInt",
+              link: "/src/frontendTech/js-bigint",
+            },
+            {
+              text: "箭头函数",
+              link: "/src/frontendTech/js-arrow-function",
+            }
+          ],
+        },
+        {
           text: "React",
           items: [
             { text: "React useState 原理", link: "/src/frontendTech/react-use-state-principle" },
@@ -49,19 +106,6 @@ export default defineConfig({
             {
               text: "vue-router 导航守卫学习笔记",
               link: "/src/frontendTech/vue-router-navigation-guards",
-            },
-          ],
-        },
-        {
-          text: "Javascript",
-          items: [
-            {
-              text: "var、let、const",
-              link: "/posts/frontendTech/javascript基础.md",
-            },
-            {
-              text: "JS数据类型检测",
-              link: "/posts/frontendTech/javascript基础.md",
             },
           ],
         },
