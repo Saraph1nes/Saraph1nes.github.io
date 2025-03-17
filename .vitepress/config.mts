@@ -42,7 +42,7 @@ export default defineConfig({
 	// 指定放置生成的静态资源的目录
 	assetsDir: 'static',
 	// 站点将部署到的 base URL
-	base: "/sablog/",
+	base: "/",
 	head: [
 		['link', {rel: 'icon', href: 'logo.svg'}]
 	],
