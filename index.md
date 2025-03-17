@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: 我的文章
-      link: /
+      link: /src/article/
     - theme: alt
       text: 个人项目
       link: /
