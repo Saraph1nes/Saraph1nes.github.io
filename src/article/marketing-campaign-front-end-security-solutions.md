@@ -1,0 +1,181 @@
+# 营销活动前端安全方案
+
+## 0、数据可信性验证
+
+### 数字签名机制
+
+- 后端返回中奖结果时，附带基于`奖项ID+时间戳+用户ID`等参数生成的HMAC签名
+- 若签名不匹配，触发异常提示并记录日志，例如后端返回数据格式：
+
+```JSON
+// 接口返回数据
+{
+  "awardId": "0x1A3F", // 奖品id
+  "userId": "12345", // 用户id
+  "timestamp": 1698765432, // 时间戳
+  "signature": "a3d9f8c1..." // HMAC签名
+}
+```
+
+#### 验证签名的时机
+
+- 数据展示之前
+  - 确保展示的数据未被篡改。当后端返回中奖结果时，前端在展示中奖信息之前，先验证 HMAC 签名。
+- 用户关键操作之前
+  - 如领取奖品、分享结果等。如果用户需要执行某些关键操作，在这些操作触发之前，再次验证 HMAC 签名。
+- 定时或事件驱动验证
+  - 防止数据在展示后被篡改。定时或事件驱动验证，如**定时验证**和**DOM 变化时验证**
+- 后端二次验证
+  - 作为最后的安全防线。为了进一步增强安全性，可以在前端验证通过后，调用后端接口传回签名进行二次验证。
+
+### 不可逆数据映射
+
+1. 后端返回`奖品代号`（如 0x1A3F）而非明文
+2. 前端通过加密映射表转换为可读文本（避免明文存储）
+
+```js
+// 加密映射表示例
+const AWARD_MAP = {
+  '0x1A3F': { 
+    name: '一等奖',
+    hash: 'a3d9f8...' // 后端预计算的哈希
+  }
+};
+```
+
+## 1、展示层防篡改
+
+### DOM防篡改监控
+
+```JS
+// 使用MutationObserver监听中奖元素
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mut => {
+    if (mut.target.id === 'award-text') {
+      const currentText = mut.target.innerText;
+      const isValid = validateDisplayText(currentText);
+      if (!isValid) {
+        lockInterface();
+        reportTampering();
+      }
+    }
+  });
+});
+observer.observe(document.getElementById('award-text'), {
+  characterData: true,
+  subtree: true
+});
+```
+
+### 视觉防伪技术
+
+- 关键信息使用Canvas/SVG渲染（而非普通DOM）
+- 添加动态水印（包含用户ID/时间等不可见信息）
+
+## 2、数据链路保护
+
+### HTTPS强制加密
+
+`Strict-Transport-Security`（HSTS，HTTP Strict Transport Security）是一种安全策略机制，用于强制客户端（如浏览器）通过 HTTPS 而不是 HTTP 访问网站。它的作用是防止中间人攻击（如 SSL Stripping）和协议降级攻击，确保数据在传输过程中始终加密。
+
+- 当浏览器首次访问支持 HSTS 的网站时，服务器会返回 `Strict-Transport-Security` 头。
+
+- 浏览器会将该域名加入 HSTS 列表，并在有效期内（如 1 年）强制使用 HTTPS 访问该网站。
+
+```nginx
+# Nginx配置HSTS
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+```
+
+1. **`Strict-Transport-Security`**：
+   - 这是 HTTP 响应头字段，用于启用 HSTS 策略。
+2. **`max-age=31536000`**：
+   - 指定 HSTS 策略的有效期（以秒为单位）。
+   - `31536000` 秒 = 1 年，表示浏览器在 1 年内会强制使用 HTTPS 访问该网站。
+3. **`includeSubDomains`**：
+   - 表示 HSTS 策略适用于当前域名及其所有子域名。
+   - 例如，如果主域名是 `example.com`，则 `api.example.com` 和 `blog.example.com` 也会强制使用 HTTPS。
+4. **`always`**：
+   - 确保无论响应状态码是什么（如 200、404 等），都会添加该响应头。
+
+#### HSTS 的注意事项
+
+1. **首次访问风险**：
+
+   - 在用户首次访问时，HSTS 尚未生效，仍然可能受到中间人攻击。
+
+   - 可以通过将域名提交到 [HSTS Preload List](https://hstspreload.org/) 来解决这个问题。提交域名并满足以下条件：
+
+     - 根域名和所有子域名都支持 HTTPS。
+
+     - 配置 `Strict-Transport-Security` 头，并包含 `preload` 指令：
+
+       ```nginx
+       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+       ```
+
+     - 提交后，主流浏览器会在其内置列表中包含该域名，强制使用 HTTPS。
+
+2. **配置错误的影响**：
+
+   - 如果错误配置 HSTS（如有效期过长），可能导致用户无法访问网站。
+   - 建议逐步增加 `max-age`，确保配置正确后再设置为较长时间。
+
+3. **子域名的影响**：
+
+   - `includeSubDomains` 会将策略应用到所有子域名，需确保所有子域名都支持 HTTPS。
+
+### 请求时效性控制
+
+防止重放攻击，由于 Token 有过期时间，攻击者无法重复使用旧的 Token。
+
+**前端：**
+
+- 在用户点击抽奖按钮时，生成一个时效性 Token（如 JWT），并附带在请求中。
+- Token 包含过期时间（如 10 秒后过期）。
+
+**后端：**
+
+- 收到请求后，验证 Token 是否有效（包括签名和过期时间）。
+- 如果 Token 过期或无效，拒绝请求。
+
+## 3、运营端验证体系
+
+- 每个中奖结果生成唯一`award_id`
+- 前端展示时同时显示二维码（包含award_id+校验码）
+- 用户投诉时，运营扫描二维码获取`award_id`
+- 后台查询显示真实奖项与用户设备信息
+- 对比用户截图中的签名哈希与数据库记录
+- 若发现不一致，提供技术证据拒绝赔付
+
+```javascript
+// 生成防伪二维码
+const qrData = `${awardId}|${crypto.createHash('sha256')
+  .update(awardId+userSecret)
+  .digest('hex').substr(0,8)}`;
+renderQRCode(qrData);
+```
+
+## 4、补充防御措施
+
+### 行为异常检测
+
+```JS
+// 埋点监控关键操作时序
+const startTime = performance.now();
+api.draw().then(res => {
+  const latency = performance.now() - startTime;
+  if (latency < 100) { // 异常快速响应
+    reportCheating({type: 'TIME_ANOMALY'});
+  }
+});
+```
+
+### 代码混淆加固
+
+```bash
+# 使用专业混淆工具
+npm install javascript-obfuscator -g
+javascript-obfuscator src --output dist
+```
+
