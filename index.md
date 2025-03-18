@@ -5,6 +5,7 @@ editLink: false
 lastUpdated: false
 isNoComment: true
 isNoBackBtn: true
+aside: false
 ---
 
 <!-- 之所以将代码写在 md 里面，而非单独封装为 Vue 组件，因为 aside 不会动态刷新，参考 https://github.com/vuejs/vitepress/issues/2686 -->
@@ -51,7 +52,7 @@ import {
 	MessagePlugin,
 	PaginationProps,
 	Pagination as TPagination,
-  Tag as TTag,
+	Tag as TTag,
 } from "tdesign-vue-next";
 
 import { data as posts } from "./.vitepress/theme/posts.data.mts";
@@ -147,10 +148,8 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 }
 
 .hollow-text {
-  
-  /* 设置文本颜色为透明 */
-  color: var(--vp-c-bg);
-  
+	/* 设置文本颜色为透明 */
+	color: var(--vp-c-bg);
 	-webkit-text-stroke: 1px var(--vp-c-text-1);
 }
 </style>

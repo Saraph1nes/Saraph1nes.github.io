@@ -24,12 +24,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 接着找到`createRoot`和`render`的实现文件，以下是文件路径
 
-- `createRoot`和`render`的实现：`packages/react-dom/src/client/ReactDOMRoot.js`
-- 老`render`实现(ReactDOM.render)：`packages/react-dom/src/client/ReactDOMLegacy.js`
+- `createRoot`和`render`的实现：`packages/react-dom/books/client/ReactDOMRoot.js`
+- 老`render`实现(ReactDOM.render)：`packages/react-dom/books/client/ReactDOMLegacy.js`
 
 ## createRoot实现
 
-> 位置：packages/react-dom/src/client/ReactDOMRoot.js
+> 位置：packages/react-dom/books/client/ReactDOMRoot.js
 >
 > `createRoot`函数
 
@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ### 1、验证DOM合法性
 
-> 位置：packages/react-dom/src/client/ReactDOMRoot.js
+> 位置：packages/react-dom/books/client/ReactDOMRoot.js
 >
 > `isValidContainer`函数
 
@@ -61,7 +61,7 @@ export function isValidContainer(node: any): boolean {
 
 ### 2、创建Fiber根节点
 
-> 位置：packages/react-dom/src/client/ReactDOMRoot.js
+> 位置：packages/react-dom/books/client/ReactDOMRoot.js
 >
 > `createRoot `函数
 
@@ -79,7 +79,7 @@ const root = createContainer(
 );
 ```
 
-> 位置：packages/react-reconciler/src/ReactFiberReconciler.js
+> 位置：packages/react-reconciler/books/ReactFiberReconciler.js
 >
 > `createContainer `函数
 
@@ -113,7 +113,7 @@ containerInfo: Container,
         }
 ```
 
-> 位置：packages/react-reconciler/src/ReactFiberRoot.js
+> 位置：packages/react-reconciler/books/ReactFiberRoot.js
 >
 > `createFiberRoot` 函数
 
@@ -169,7 +169,7 @@ containerInfo: Container,
             }
 ```
 
-> 位置：packages/react-reconciler/src/ReactFiber.js
+> 位置：packages/react-reconciler/books/ReactFiber.js
 >
 > `createHostRootFiber`函数
 
@@ -260,7 +260,7 @@ uninitializedFiber.stateNode = root;
 
 ### 3、初始化更新队列
 
-> 位置：packages/react-reconciler/src/ReactFiberClassUpdateQueue.js
+> 位置：packages/react-reconciler/books/ReactFiberClassUpdateQueue.js
 >
 > initializeUpdateQueue函数
 
@@ -318,11 +318,11 @@ function Counter() {
 
 ## render实现
 
-> 位置：packages/react-dom/src/client/ReactDOMRoot.js
+> 位置：packages/react-dom/books/client/ReactDOMRoot.js
 >
 > `ReactDOMRoot.prototype.render`函数
 
-注意：下文中的`OpaqueRoot `就是 `FiberRootNode`，详情见`packages/react-reconciler/src/ReactFiberReconciler.js`，中的 `type OpaqueRoot = FiberRoot;`
+注意：下文中的`OpaqueRoot `就是 `FiberRootNode`，详情见`packages/react-reconciler/books/ReactFiberReconciler.js`，中的 `type OpaqueRoot = FiberRoot;`
 
 ```js
 ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render =
@@ -341,7 +341,7 @@ ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render =
   };
 ```
 
-> 位置：packages/react-reconciler/src/ReactFiberReconciler.js
+> 位置：packages/react-reconciler/books/ReactFiberReconciler.js
 >
 > `updateContainer`函数
 

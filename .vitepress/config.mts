@@ -1,7 +1,6 @@
 import {defineConfig} from "vitepress";
 import frontendTechRouter from "./router/frontend-tech.mjs";
 import algorithmRouter from "./router/algorithm.mjs";
-import articleRouter from "./router/article.mjs";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,12 +14,11 @@ export default defineConfig({
 		logo: "/logo.svg",
 		nav: [
 			{text: "主页", link: "/"},
-			{text: "文章", link: "/src/article/"},
 			{
 				text: "专题",
 				items: [
-					{text: "前端专题", link: "/src/frontendTech/"},
-					{text: "算法专题", link: "/src/algorithm/"},
+					{text: "前端基础", link: "/books/frontendTech/"},
+					{text: "算法", link: "/books/algorithm/"},
 				],
 			},
 			{
@@ -34,9 +32,8 @@ export default defineConfig({
 		],
 
 		sidebar: {
-			"/src/frontendTech/": frontendTechRouter,
-			"/src/algorithm/": algorithmRouter,
-			"/src/article/": articleRouter,
+			"/books/frontendTech/": frontendTechRouter,
+			"/books/algorithm/": algorithmRouter,
 		},
 
 		socialLinks: [{icon: "github", link: "https://github.com/Saraph1nes"}],

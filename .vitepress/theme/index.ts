@@ -2,6 +2,8 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import 'tdesign-vue-next/es/style/index.css';
+
 import './style.css'
 
 export default {

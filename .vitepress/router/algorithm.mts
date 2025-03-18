@@ -1,4 +1,4 @@
-const algorithmRouter = [
+export default [
     {
         text: "双指针",
         items: [
@@ -66,5 +66,3 @@ const algorithmRouter = [
         ],
     },
 ]
-
-export default algorithmRouter
