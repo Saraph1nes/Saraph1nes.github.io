@@ -1,6 +1,7 @@
 import {defineConfig} from "vitepress";
 import frontendTechRouter from "./router/frontend-tech.mjs";
 import algorithmRouter from "./router/algorithm.mjs";
+import articleRouter from "./router/article.mjs";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -35,6 +36,7 @@ export default defineConfig({
 		sidebar: {
 			"/src/frontendTech/": frontendTechRouter,
 			"/src/algorithm/": algorithmRouter,
+			"/src/article/": articleRouter,
 		},
 
 		socialLinks: [{icon: "github", link: "https://github.com/Saraph1nes"}],

@@ -1,6 +1,18 @@
 {
   "devDependencies": {
-    "vitepress": "^1.6.3"
+    "@types/node": "^20.12.12",
+    "feed": "^4.2.2",
+    "markdown-it-mathjax3": "^4.3.2",
+    "sass": "^1.77.2",
+    "unplugin-auto-import": "^0.17.6",
+    "unplugin-vue-components": "^0.27.0",
+    "vitepress": "2.0.0-alpha.2"
+  },
+  "dependencies": {
+    "@giscus/vue": "^3.0.0",
+    "tdesign-icons-vue-next": "^0.2.2",
+    "tdesign-vue-next": "^1.11.1",
+    "vue": "^3.5.13"
   },
   "scripts": {
     "docs:dev": "vitepress dev",
