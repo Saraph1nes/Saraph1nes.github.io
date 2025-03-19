@@ -123,6 +123,7 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 
 	> a {
 		font-weight: 400;
+		text-decoration: none;  // 添加这一行来移除下划线
 	}
 
 	.post-date {
