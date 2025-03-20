@@ -3,6 +3,10 @@ title: 比较requestAnimationFrame、nextTick 和 requestIdleCallback
 date: 2025-03-19
 tags: 
     - 前端
+    - JavaScript
+    - 性能优化
+    - 事件循环
+    - 任务调度
 ---
 
 # 比较requestAnimationFrame、nextTick 和 requestIdleCallback
