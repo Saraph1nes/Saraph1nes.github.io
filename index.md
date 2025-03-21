@@ -9,7 +9,7 @@ aside: false
 ---
 
 <!-- 之所以将代码写在 md 里面，而非单独封装为 Vue 组件，因为 aside 不会动态刷新，参考 https://github.com/vuejs/vitepress/issues/2686 -->
-<template v-for="post in curPosts" :key="post.url">
+<template v-for="post in posts" :key="post.url">
   <h2 :id="post.title" class="post-title">
     <a :href="post.url">{{ post.title }}</a>
     <a
@@ -31,7 +31,7 @@ aside: false
 </template>
 
 <!-- <Pagination /> -->
-<div class="pagination-container">
+<!-- <div class="pagination-container">
   <t-pagination
     v-model="current"
     v-model:pageSize="pageSize"
@@ -42,7 +42,7 @@ aside: false
     :showJumper="isMobile()"
     @current-change="onCurrentChange"
   />
-</div>
+</div> -->
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
@@ -58,46 +58,7 @@ import {
 import { data as posts } from "./.vitepress/theme/posts.data.mts";
 import { isMobile } from "./.vitepress/theme/utils/mobile.ts";
 
-const route = useRoute();
-
-const getPage = () => {
-  const search = route.query
-  const searchParams = new URLSearchParams(search);
-
-  return Number(searchParams.get("page") || "1");
-}
-
-const current = ref(getPage())
-const pageSize = ref(10);
-const total = ref(posts.length);
-
-// 在首页有page参数时，从NAV跳转到当前页，清空了参数，但没有刷新页面内容的问题，需要手动更新current
-const router = useRouter();
-router.onAfterRouteChange = (to) => {
-  current.value = getPage();
-}
-
-const curPosts = computed(() => {
-	return posts.slice(
-		(current.value - 1) * pageSize.value,
-		current.value * pageSize.value
-	);
-});
-
-const onCurrentChange: PaginationProps["onCurrentChange"] = (
-	index,
-	pageInfo
-) => {
-	// MessagePlugin.success(`转到第${index}页`);
-
-	const url = new URL(window.location as any);
-	url.searchParams.set("page", index.toString());
-	window.history.replaceState({}, "", url);
-
-	window.scrollTo({
-		top: 0,
-	});
-};
+console.log('posts', posts)
 </script>
 <style lang="scss" scoped>
 /* 去掉.vp-doc li + li 的 margin-top */
@@ -122,7 +83,8 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 	left: 0;
 
 	> a {
-		font-weight: 400;
+		color: var(--vp-c-text-1);
+		font-weight: bold;
 		text-decoration: none;  // 添加这一行来移除下划线
 	}
 
@@ -133,7 +95,7 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 
 		z-index: -1;
 		opacity: .16;
-		font-size:76px;
+		font-size:86px;
 		font-weight: 900;
 	}
 
