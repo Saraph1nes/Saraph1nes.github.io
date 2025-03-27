@@ -4,11 +4,11 @@ export default [
         items: [
             {
                 text: "765.情侣牵手",
-                link: "/src/algorithm/leetcode765",
+                link: "/books/algorithm/leetcode765",
             },
             {
                 text: "82.删除排序链表中的重复元素 II",
-                link: "/src/algorithm/leetcode82",
+                link: "/books/algorithm/leetcode82",
             },
         ],
     },
@@ -17,7 +17,7 @@ export default [
         items: [
             {
                 text: "746.使用最小花费爬楼梯",
-                link: "/src/algorithm/leetcode746",
+                link: "/books/algorithm/leetcode746",
             },
         ],
     },
@@ -26,7 +26,7 @@ export default [
         items: [
             {
                 text: "1901.寻找峰值 II",
-                link: "/src/algorithm/leetcode1901",
+                link: "/books/algorithm/leetcode1901",
             },
         ],
     },
@@ -35,7 +35,7 @@ export default [
         items: [
             {
                 text: "643.子数组最大平均数 I",
-                link: "/src/algorithm/leetcode643",
+                link: "/books/algorithm/leetcode643",
             },
         ],
     },
@@ -44,15 +44,15 @@ export default [
         items: [
             {
                 text: "二叉树遍历",
-                link: "/src/algorithm/leetcode94",
+                link: "/books/algorithm/leetcode94",
             },
             {
                 text: "构造二叉树",
-                link: "/src/algorithm/leetcode105",
+                link: "/books/algorithm/leetcode105",
             },
             {
                 text: "2583.二叉树中的第 K 大层和",
-                link: "/src/algorithm/leetcode2583",
+                link: "/books/algorithm/leetcode2583",
             },
         ],
     },
@@ -61,7 +61,7 @@ export default [
         items: [
             {
                 text: "快速排序",
-                link: "/src/algorithm/quick-sort",
+                link: "/books/algorithm/quick-sort",
             },
         ],
     },

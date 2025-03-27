@@ -1,6 +1,7 @@
 import {defineConfig} from "vitepress";
 import frontendTechRouter from "./router/frontend-tech.mjs";
 import algorithmRouter from "./router/algorithm.mjs";
+import photographRouter from "./router/photograph.mjs";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -22,7 +23,10 @@ export default defineConfig({
 				],
 			},
 			{text: "🤖AI工具", link: "/ai-tools"},
-			{text: "📹摄影", link: "/photo-album"},
+			{
+				text: "📹摄影专题", 
+				link: "/books/photograph/"
+			},
 			{
 				text: "关于",
 				items: [
@@ -36,6 +40,7 @@ export default defineConfig({
 		sidebar: {
 			"/books/frontendTech/": frontendTechRouter,
 			"/books/algorithm/": algorithmRouter,
+			"/books/photograph/": photographRouter,
 		},
 
 		socialLinks: [{icon: "github", link: "https://github.com/Saraph1nes"}],
