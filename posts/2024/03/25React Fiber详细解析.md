@@ -1,6 +1,6 @@
 ---
 title: React Fiber详细解析
-date: 2024-04-29
+date: 2024-03-25
 tags: 
   - React
   - Fiber
@@ -11,10 +11,9 @@ tags:
 
 # React Fiber详细解析
 
-> ✨文章摘要（AI生成）
-> 本文深入解析了 React Fiber 的核心实现原理和工作机制。文章首先介绍了 Fiber 产生的背景，解释了传统 React 更新机制存在的性能问题。随后详细阐述了 Fiber 的设计思路，包括 Fiber Node 的结构、任务调度机制、优先级计算、双缓存树的实现等核心概念。同时介绍了 Fiber 如何通过时间分片和可中断的调和过程来提升应用性能，以及如何通过 requestIdleCallback 和 requestAnimationFrame 来实现与浏览器的调度协作。通过本文，读者可以全面理解 React Fiber 架构的设计思想和实现细节。
-
 <!-- DESC SEP -->
+
+本文深入解析了 React Fiber 的核心实现原理和工作机制。文章首先介绍了 Fiber 产生的背景，解释了传统 React 更新机制存在的性能问题。随后详细阐述了 Fiber 的设计思路，包括 Fiber Node 的结构、任务调度机制、优先级计算、双缓存树的实现等核心概念。同时介绍了 Fiber 如何通过时间分片和可中断的调和过程来提升应用性能，以及如何通过 requestIdleCallback 和 requestAnimationFrame 来实现与浏览器的调度协作。通过本文，读者可以全面理解 React Fiber 架构的设计思想和实现细节。
 
 <!-- DESC SEP -->
 
