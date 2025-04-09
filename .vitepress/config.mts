@@ -16,17 +16,15 @@ export default defineConfig({
 		nav: [
 			{text: "主页", link: "/"},
 			{
-				text: "开发专题",
+				text: "专题",
 				items: [
-					{text: "前端", link: "/books/frontendTech/"},
-					{text: "算法", link: "/books/algorithm/"},
+					{text: "前端面试", link: "/books/frontendTech/"},
+					{text: "算法整理", link: "/books/algorithm/"},
+					{text: "摄影知识", link: "/books/photograph/"}
 				],
 			},
-			{text: "🤖AI工具", link: "/ai-tools"},
-			{
-				text: "📹摄影专题", 
-				link: "/books/photograph/"
-			},
+			{text: "AI工具", link: "/ai-tools"},
+			{text: "摄影集", link: "/photo-album"},
 			{
 				text: "关于",
 				items: [
