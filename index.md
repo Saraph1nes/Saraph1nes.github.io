@@ -27,7 +27,7 @@ aside: false
     shape="round"
     >{{ tag }}</t-tag
   >
-  <div v-if="post.excerpt" v-html="post.excerpt"></div>
+  <div class="post-excerpt" v-if="post.excerpt" v-html="post.excerpt"></div>
 </template>
 
 <!-- <Pagination /> -->
@@ -114,5 +114,11 @@ console.log('posts', posts)
 	/* 设置文本颜色为透明 */
 	color: var(--vp-c-bg);
 	-webkit-text-stroke: 1px var(--vp-c-text-1);
+}
+
+.post-excerpt{
+	color: var(--vp-c-text-3);
+	font-size: 14px;
+	margin-bottom: 10px;
 }
 </style>
