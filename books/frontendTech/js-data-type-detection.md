@@ -74,7 +74,7 @@ function instance_of(instance, classFunc) {
 ```javascript
 arr = [];
 arr.constructor === Array(1).constructor // true
-(arr.constructor === Array(1).constructor) === Number; // false
+arr.constructor === Number; // false
 arr.constructor === Object; // false
 arr.constructor.constructor === Object.constructor // true
 ```

@@ -40,8 +40,8 @@ function.bind(thisArg, arg1, arg2, ...)
 
 | 方法  | 语法                                      | 参数传递方式         | 立即执行 | 返回新函数     |
 | ----- | ----------------------------------------- | -------------------- | -------- | -------------- |
-| apply | `function.apply(thisArg, argsArray)`      | 数组或类数组对象     | 是       | 是             |
-| call  | `function.call(thisArg, arg1, arg2, ...)` | 逐个传递             | 是       | 是             |
+| apply | `function.apply(thisArg, argsArray)`      | 数组或类数组对象     | 是       | 否             |
+| call  | `function.call(thisArg, arg1, arg2, ...)` | 逐个传递             | 是       | 否             |
 | bind  | `function.bind(thisArg, arg1, arg2, ...)` | 逐个传递（延迟执行） | 否       | 是，返回新函数 |
 
 ## 举例说明

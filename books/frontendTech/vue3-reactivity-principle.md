@@ -192,7 +192,6 @@ console.log(proxy === raw) // false
 ## ref 和 reactive 比较
 
 - `reactive` 只能用于对象类型（对象、数组和如 Map、Set 这样的[集合类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#keyed_collections)），它不能持有如 `string`、`number` 或 `boolean` 这样的[原始类型](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)。而 `ref` 都可以，因为 `ref` 会把对象类型的参数使用 `reactive` 处理。
--
 
 ## ref 解包
 

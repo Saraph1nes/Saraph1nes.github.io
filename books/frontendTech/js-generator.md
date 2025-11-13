@@ -133,9 +133,9 @@ console.log(gen.next(5));                // 打印结果: { value: 65, done: tru
 
 解释
 
-1. `gen.next(20)` 开始执行生成器，打印 'i: 10'，然后执行 `yield i * 10`，接收传入的参数20，计算得到100，返回 `{ value: 100, done: false }`。此时生成器暂停在 `const j = 5 * 100;` 处。
-2. `gen.next(10)` 继续执行生成器，调用 `next(10)`时， 将整个第一个 `yield` 表达式替换为 10，打印 'j: 50'，然后执行 `yield (2 * j) / 4`，接收传入的参数10，计算得到25，返回 `{ value: 25, done: false }`。此时生成器暂停在 `const k = yield (2 * j) / 4;` 处。
-3. `gen.next(5)` 继续执行生成器，调用 `next(5)`时，将整个第二个 `yield` 替换为 5，打印 'k: 5'，然后执行到函数末尾，返回 `{ value: 65, done: true }`。生成器执行完毕，最后的返回值是 `i + j + k`，即 `10 + 50 + 5 = 65`。
+1. `gen.next(20)` 开始执行生成器，打印 'i: 10'，然后执行 `yield i * 10`，返回 `{ value: 100, done: false }`。注意：第一次调用 `next()` 时传入的参数会被忽略。此时生成器暂停在 `const j = 5 * (yield i * 10);` 处，等待下一次 `next()` 调用。
+2. `gen.next(10)` 继续执行生成器，调用 `next(10)` 时，传入的参数10会作为上一个 `yield i * 10` 表达式的返回值，所以 `const j = 5 * 10 = 50`，打印 'j: 50'，然后执行 `yield (2 * j) / 4`，即 `yield (2 * 50) / 4 = yield 25`，返回 `{ value: 25, done: false }`。此时生成器暂停在 `const k = yield (2 * j) / 4;` 处。
+3. `gen.next(5)` 继续执行生成器，调用 `next(5)` 时，传入的参数5会作为上一个 `yield (2 * j) / 4` 表达式的返回值，所以 `const k = 5`，打印 'k: 5'，然后执行到函数末尾，返回 `{ value: 65, done: true }`。生成器执行完毕，最后的返回值是 `i + j + k`，即 `10 + 50 + 5 = 65`。
 
 ## Generator.prototype.throw()
 

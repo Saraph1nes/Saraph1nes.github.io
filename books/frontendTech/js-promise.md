@@ -119,7 +119,7 @@ Promise.allSettled = promises => {
             reason: err
           });
         })
-        .finally(e => {
+        .finally(() => {
           if (++count === promises.length) {
             resolve(arr);
           }
