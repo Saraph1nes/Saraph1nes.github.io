@@ -1,18 +1,18 @@
 {
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.19.25",
     "feed": "^4.2.2",
     "markdown-it-mathjax3": "^4.3.2",
-    "sass": "^1.77.2",
-    "unplugin-auto-import": "^0.17.6",
-    "unplugin-vue-components": "^0.27.0",
+    "sass": "^1.94.0",
+    "unplugin-auto-import": "^0.17.8",
+    "unplugin-vue-components": "^0.27.5",
     "vitepress": "2.0.0-alpha.2"
   },
   "dependencies": {
-    "@giscus/vue": "^3.0.0",
+    "@giscus/vue": "^3.1.1",
     "tdesign-icons-vue-next": "^0.2.6",
-    "tdesign-vue-next": "^1.11.4",
-    "vue": "^3.5.13"
+    "tdesign-vue-next": "^1.17.2",
+    "vue": "^3.5.24"
   },
   "scripts": {
     "dev": "vitepress dev",
